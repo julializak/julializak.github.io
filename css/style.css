@@ -121,9 +121,20 @@ button {
 }
 
 .site-logo {
-  font-size: var(--text-lg);
-  font-weight: 600;
-  letter-spacing: var(--tracking-tight);
+  display: inline-flex;
+  align-items: center;
+  transition: opacity var(--transition-fast);
+}
+
+.site-logo:hover,
+.site-logo:focus-visible {
+  opacity: 0.6;
+}
+
+.site-logo__mark {
+  height: 40px;
+  width: auto;
+  display: block;
 }
 
 .site-nav ul {
