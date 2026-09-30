@@ -164,29 +164,52 @@ button {
    Hero
    ========================================================================== */
 .hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 80vh;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)),
+    url("/media/final-background.png") center / cover no-repeat;
+}
+
+.hero__inner {
   padding-block: var(--space-8) var(--space-7);
+}
+
+.hero__signature {
+  display: inline-block;
+}
+
+.hero__signature-mark {
+  height: 44px;
+  width: auto;
+  /* Source signature is black ink on transparent — flip it white for the photo background. */
+  filter: brightness(0) invert(1);
 }
 
 .hero__eyebrow {
   font-size: var(--text-sm);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.75);
   margin-bottom: var(--space-3);
 }
 
 .hero__headline {
+  margin-top: var(--space-3);
   font-size: var(--text-5xl);
   font-weight: 600;
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   max-width: 18ch;
+  color: var(--color-invert-text);
 }
 
 .hero__intro {
   margin-top: var(--space-4);
   font-size: var(--text-lg);
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.85);
   max-width: 46ch;
 }
 
