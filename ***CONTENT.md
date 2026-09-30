@@ -1,0 +1,29 @@
+keep a consitent ratio for images
+- 4:3 for images
+- 1:1 for project cards
+
+
+
+
+# Home
+Headline: ...
+Intro: ...
+
+
+
+# About
+Bio (short): ...
+Bio (long): ...
+Career goals: ...
+
+
+
+# Golf
+...
+
+
+
+# Work — Project 1: [title]
+Description: ...
+Role: ...
+Outcome: ...
