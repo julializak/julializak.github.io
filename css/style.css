@@ -315,9 +315,13 @@ button {
 .project-card__media {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  object-fit: cover;
+  object-position: center;
   background: linear-gradient(135deg, #ececec, #d2d2d2);
   color: #aaaaaa;
   transition: transform var(--transition-base);
