@@ -111,13 +111,17 @@ button {
    ========================================================================== */
 .site-header {
   border-bottom: 1px solid var(--color-border);
+  position: relative;
+  z-index: 20;
 }
 
 .site-header .container {
+  max-width: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-block: var(--space-3);
+  padding-inline: var(--space-5);
 }
 
 .site-logo {
@@ -158,6 +162,40 @@ button {
 
 .site-nav a[aria-current="page"] {
   border-bottom-color: var(--color-text);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.nav-toggle__bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--color-text);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.nav-toggle.is-open .nav-toggle__bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.is-open .nav-toggle__bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-open .nav-toggle__bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ==========================================================================
@@ -506,20 +544,41 @@ button {
 /* ==========================================================================
    Responsive
    ========================================================================== */
-@media (max-width: 640px) {
-  .hero__headline {
-    font-size: var(--text-3xl);
+@media (max-width: 760px) {
+  .nav-toggle {
+    display: flex;
   }
 
-  .site-header .container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-3);
+  .site-nav {
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    max-height: 0;
+    overflow: hidden;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    transition: max-height var(--transition-base);
+  }
+
+  .site-nav.is-open {
+    max-height: 400px;
   }
 
   .site-nav ul {
-    flex-wrap: wrap;
-    gap: var(--space-3);
+    flex-direction: column;
+    gap: 0;
+    padding: var(--space-2) var(--space-5) var(--space-4);
+  }
+
+  .site-nav a {
+    display: block;
+    padding-block: var(--space-2);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero__headline {
+    font-size: var(--text-3xl);
   }
 
   .site-footer .container {
