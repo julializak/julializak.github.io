@@ -262,6 +262,7 @@ button {
 .intro__photo {
   aspect-ratio: 3 / 4;
   overflow: hidden;
+  border-radius: 50%;
   background: var(--color-border);
 }
 
@@ -282,6 +283,18 @@ button {
   font-size: var(--text-lg);
   color: var(--color-text-muted);
   max-width: 56ch;
+}
+
+.intro__badges {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.intro__badge {
+  height: 44px;
+  width: auto;
 }
 
 @media (max-width: 640px) {
