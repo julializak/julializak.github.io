@@ -245,11 +245,30 @@ button {
   color: var(--color-invert-text);
 }
 
-.hero__intro {
-  margin-top: var(--space-4);
+.hero__credentials {
+  list-style: none;
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.hero__credentials li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: var(--space-3);
+  border-left: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.hero__school {
   font-size: var(--text-lg);
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 46ch;
+  font-weight: 600;
+  color: #fff;
+}
+
+.hero__detail {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* ==========================================================================
