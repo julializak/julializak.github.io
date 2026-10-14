@@ -221,7 +221,7 @@ button {
 }
 
 .hero__signature-mark {
-  height: 44px;
+  height: 70px;
   width: auto;
   /* Source signature is black ink on transparent — flip it white for the photo background. */
   filter: brightness(0) invert(1);
