@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project One — Julia Lizak</title>
-  <meta name="description" content="Project One case study by Julia Lizak.">
+  <title>NCR Atleos — Julia Lizak</title>
+  <meta name="description" content="Julia Lizak's summer as an MIS Data Intern at NCR Atleos.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -34,11 +34,124 @@
   </header>
 
   <main>
-    <section class="stub container">
-      <a class="section__link stub__back" href="/work/">&larr; Back to Work</a>
-      <h1 class="stub__title">My Life at NCR Atleos</h1>
-      <p class="stub__note">More info coming soon.</p>
+
+    <!-- ######### HERO (split: photo left, title right) ######### -->
+    <section class="container post-hero">
+      <img class="post-img" src="/media/placeholder.png" alt="Placeholder">
+      <div>
+        <a class="section__link stub__back" href="/work/">&larr; Back to Work</a>
+        <p class="post-eyebrow">Summer 2025 &middot; Frisco, Texas</p>
+        <h1 class="post-hero__title">My Life at NCR Atleos</h1>
+        <p class="post-lede">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultricies ultricies nulla, convallis maximus lacus.</p>
+      </div>
     </section>
+
+    <!-- ######### INTRO (polaroid collage + story) ######### -->
+    <section class="section">
+      <div class="container post-intro">
+        <div class="collage">
+          <img class="post-img collage__back" src="/media/placeholder.png" alt="Placeholder">
+          <figure class="polaroid polaroid--tilt-r">
+            <img src="/media/placeholder.png" alt="Placeholder">
+            <figcaption>Caption here</figcaption>
+          </figure>
+        </div>
+        <div class="post-body">
+          <p class="post-eyebrow">The Move</p>
+          <h2 class="post-heading">A new city, a new team</h2>
+          <p class="post-lede">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultricies ultricies nulla, convallis maximus lacus imperdiet sed. Integer pharetra ex metus, sit amet posuere nulla consequat sit amet.</p>
+          <p>Fusce aliquet in purus eget ultrices. Maecenas egestas magna sed tempor pharetra. In vitae eros ornare ex condimentum ultricies. Fusce tempor urna quam, ut dignissim ex posuere sit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ######### TILES (jump links to sections below) ######### -->
+    <section class="container">
+      <div class="post-tiles">
+        <a class="post-tile" href="#role"><img src="/media/placeholder.png" alt=""><span>The Role</span></a>
+        <a class="post-tile" href="#project"><img src="/media/placeholder.png" alt=""><span>The Project</span></a>
+        <a class="post-tile" href="#takeaways"><img src="/media/placeholder.png" alt=""><span>Takeaways</span></a>
+        <a class="post-tile" href="#gallery"><img src="/media/placeholder.png" alt=""><span>The City</span></a>
+      </div>
+    </section>
+
+    <!-- ######### FEATURE: THE ROLE (card overlaps photo) ######### -->
+    <section class="container post-section">
+      <div class="post-feature" id="role">
+        <img class="post-img post-feature__img" src="/media/placeholder.png" alt="Placeholder">
+        <div class="post-feature__card post-body">
+          <p class="post-eyebrow">MIS Data Intern</p>
+          <h2 class="post-heading">The Role</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultricies ultricies nulla, convallis maximus lacus imperdiet sed. Integer pharetra ex metus, sit amet posuere nulla consequat sit amet.</p>
+          <p>Fusce aliquet in purus eget ultrices. Maecenas egestas magna sed tempor pharetra. In vitae eros ornare ex condimentum ultricies. Fusce tempor urna quam, ut dignissim ex posuere sit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ######### FEATURE: SUMMER PROJECT (flipped) ######### -->
+    <section class="container post-section">
+      <div class="post-feature post-feature--flip" id="project">
+        <img class="post-img post-feature__img" src="/media/placeholder.png" alt="Placeholder">
+        <div class="post-feature__card post-body">
+          <p class="post-eyebrow">My Summer Project</p>
+          <h2 class="post-heading">SLAM Model 2025</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultricies ultricies nulla, convallis maximus lacus imperdiet sed. Integer pharetra ex metus, sit amet posuere nulla consequat sit amet.</p>
+          <p>Fusce aliquet in purus eget ultrices. Maecenas egestas magna sed tempor pharetra. In vitae eros ornare ex condimentum ultricies. Fusce tempor urna quam, ut dignissim ex posuere sit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ######### BAND: NUMBERED TAKEAWAYS ######### -->
+    <section class="post-band post-section" id="takeaways">
+      <div class="container post-band__grid">
+        <figure class="polaroid polaroid--tilt-l">
+          <img src="/media/placeholder.png" alt="Placeholder">
+          <figcaption>Caption here</figcaption>
+        </figure>
+        <div>
+          <p class="post-eyebrow">What I Learned</p>
+          <h2 class="post-heading">Four takeaways</h2>
+          <ol class="post-list">
+            <li><h3>Takeaway one</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></li>
+            <li><h3>Takeaway two</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></li>
+            <li><h3>Takeaway three</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></li>
+            <li><h3>Takeaway four</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ######### POLAROID GALLERY ######### -->
+    <section class="container post-section" id="gallery">
+      <p class="post-eyebrow">Outside the Office</p>
+      <h2 class="post-heading">Life in Dallas</h2>
+      <div class="post-gallery">
+        <figure class="polaroid polaroid--tilt-l"><img src="/media/placeholder.png" alt="Placeholder"><figcaption>Caption</figcaption></figure>
+        <figure class="polaroid polaroid--tilt-r"><img src="/media/placeholder.png" alt="Placeholder"><figcaption>Caption</figcaption></figure>
+        <figure class="polaroid polaroid--tilt-l"><img src="/media/placeholder.png" alt="Placeholder"><figcaption>Caption</figcaption></figure>
+        <figure class="polaroid polaroid--tilt-r"><img src="/media/placeholder.png" alt="Placeholder"><figcaption>Caption</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ######### QUOTE ######### -->
+    <section class="section">
+      <div class="container">
+        <blockquote class="post-quote">
+          &ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&rdquo;
+          <cite>Julia Lizak</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ######### NEXT POST ######### -->
+    <nav class="container post-next" aria-label="More work">
+      <a class="section__link" href="/work/">&larr; All Work</a>
+      <a class="post-next__link" href="/work/rockwell/">
+        <span class="post-eyebrow">Next</span>
+        <strong>Rockwell Automation &rarr;</strong>
+      </a>
+    </nav>
   </main>
 
   <footer class="site-footer">
