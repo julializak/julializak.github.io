@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article One Title — Julia Lizak</title>
+  <meta name="description" content="A one-line summary of what this article is about.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="site-logo" href="/"><img class="site-logo__mark" src="/media/final-signature-short.png" alt="Julia Lizak"></a>
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <nav class="site-nav" id="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/work/">Work</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/articles/" aria-current="page">Articles</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/golf/">Golf</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ######### HEADER/TITLE ######### -->
+    <section class="stub">
+      <div class="article prose">
+        <a class="section__link stub__back" href="/articles/">&larr; Back to Articles</a>
+        <p class="post-eyebrow">October 2026 &middot; Golf</p>
+        <h1 class="stub__title">Article One Title</h1>
+        <p class="post-lede">A one-line summary of what this article is about.</p>
+
+        <figure class="article-figure">
+          <img class="post-img" src="/media/placeholder.png" alt="">
+        </figure>
+
+        <!-- ######### BODY ######### -->
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultricies ultricies nulla, convallis maximus lacus imperdiet sed. Integer pharetra ex metus, sit amet posuere nulla consequat sit amet. Fusce aliquet in purus eget ultrices.</p>
+        <p>Maecenas egestas magna sed tempor pharetra. In vitae eros ornare ex condimentum ultricies. Fusce tempor urna quam, ut dignissim ex posuere sit. Nulla facilisi, curabitur vel sem quis elit tincidunt luctus.</p>
+        <h3>A subheading</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultricies ultricies nulla, convallis maximus lacus imperdiet sed. Integer pharetra ex metus, sit amet posuere nulla consequat sit amet.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="current-year"></span> Julia Lizak</p>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="/work/">Work</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/articles/">Articles</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/golf/">Golf</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

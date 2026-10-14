@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Articles — Julia Lizak</title>
+  <meta name="description" content="Articles and posts by Julia Lizak.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- HEADER CONTENT -->
+  <header class="site-header">
+    <div class="container">
+      <a class="site-logo" href="/"><img class="site-logo__mark" src="/media/final-signature-short.png" alt="Julia Lizak"></a>
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <nav class="site-nav" id="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/work/">Work</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/articles/" aria-current="page">Articles</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/golf/">Golf</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="stub container">
+      <h1 class="stub__title">Articles</h1>
+      <p class="stub__note">Thoughts, notes, and the occasional story.</p>
+    </section>
+
+    <!-- ARTICLES (newest first — copy an <li> block to add a new one) -->
+    <section class="section">
+      <div class="container">
+        <ul class="article-list">
+
+          <!-- ######### -->
+          <!-- ARTICLE 1 -->
+          <li>
+            <a class="article-row" href="/articles/article-one/">
+              <!-- swap in your own image in /media/articles/ -->
+              <img class="article-row__img" src="/media/placeholder.png" alt="">
+              <div class="article-row__text">
+                <p class="article-row__meta">October 2026 &middot; Golf</p>
+                <h2 class="article-row__title">Article One Title</h2>
+                <p class="article-row__desc">A one-line summary of what this article is about.</p>
+              </div>
+              <span class="article-row__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+
+          <!-- ######### -->
+          <!-- ARTICLE 2 -->
+          <li>
+            <a class="article-row" href="/articles/article-two/">
+              <!-- swap in your own image in /media/articles/ -->
+              <img class="article-row__img" src="/media/placeholder.png" alt="">
+              <div class="article-row__text">
+                <p class="article-row__meta">September 2026 &middot; Career</p>
+                <h2 class="article-row__title">Article Two Title</h2>
+                <p class="article-row__desc">A one-line summary of what this article is about.</p>
+              </div>
+              <span class="article-row__arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="current-year"></span> Julia Lizak</p>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="/work/">Work</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/articles/">Articles</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/golf/">Golf</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
