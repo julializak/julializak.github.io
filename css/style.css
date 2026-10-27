@@ -378,12 +378,22 @@ button {
   min-height: 220px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   transition: border-color var(--transition-base);
 }
 
 .placeholder-card:hover {
   border-color: var(--color-text);
+}
+
+.placeholder-card__media {
+  display: block;
+  width: calc(100% + 2 * var(--space-5));
+  max-width: none;
+  margin: calc(-1 * var(--space-5)) calc(-1 * var(--space-5)) var(--space-4);
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .placeholder-card__title {
