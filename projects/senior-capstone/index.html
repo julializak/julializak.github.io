@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senior Capstone — Julia Lizak</title>
+  <meta name="description" content="Senior Capstone: interpretable text classification with logistic regression, by Julia Lizak.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="site-logo" href="/"><img class="site-logo__mark" src="/media/final-signature-short.png" alt="Julia Lizak"></a>
+      <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <nav class="site-nav" id="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/work/">Work</a></li>
+          <li><a href="/projects/" aria-current="page">Projects</a></li>
+          <li><a href="/articles/">Articles</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/golf/">Golf</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ######### HEADER/TITLE ######### -->
+    <section class="stub">
+      <div class="article prose">
+        <a class="section__link stub__back" href="/projects/">&larr; Back to Projects</a>
+        <p class="post-eyebrow">Saint Mary's College &middot; Fall 2025</p>
+        <h1 class="stub__title">Senior Capstone</h1>
+        <p class="post-lede">A semester long project where I brought together mathematics, computer science, and real-world language analysis.</p>
+
+        <figure class="article-figure article-figure--narrow">
+          <img class="post-img" src="/media/projects/senior-capstone/me.jpg" alt="Julia Lizak with her Senior Capstone">
+        </figure>
+
+        <!-- ######### BODY ######### -->
+        <h2>Overview</h2>
+        <p>I explored how we can represent and analyze text using TF-IDF, vectorization techniques, and logistic regression. Using a small dataset of Saint Mary\'s course descriptions, I built and trained a model that identifies how Mathematics and English Literature course descriptions differ through their term-frequency patterns and feature weights.</p>
+
+        <h2>The Motivation</h2>
+        <p>Understanding how computers process language has become central to data science and modern artificial intelligence. On a large scale, these are applications we interact with on a day to day basis. Everything from speaking assistant like siri, chat bots, to text message autocorrect, filters for spam messages, and language translate tools like google translate. Understanding the foundational concepts of how computers process language is the core of this project and will get me to understanding these larger models. I chose text classification as my focus.</p>
+        <p>Language surrounds nearly every aspect of our lives, and understanding language can be hard, especially for machines. Humans can understand meaning, but machines only interpret numbers, so we have to turn the text into machine-interpretable information, and for this project I chose TF-IDF.</p>
+
+        <h2>Key Concepts</h2>
+        <p></p>
+
+        <h3>Machine Learning</h3>
+        <p>When computers learn from data in order to make predictions and models (without the need to be specifically programmed)</p>
+
+        <h3>Natural Language Processing</h3>
+        <p>NLP is the practice of using computers to interpret and work with human language. Natural languages have evolved over time through everyday use, unlike programming languages, which are designed from a fixed set of rules before anyone uses them. This evolution is what makes them “natural,” but it also makes them messy, ambiguous, and always changing, and that is what makes them hard for machines to understand.</p>
+
+        <h3>Term Frequency - Inverse Document Frequency</h3>
+        <div class="article-wrap">
+          <!-- photo 2 -->
+          <figure class="article-wrap__media">
+            <img src="/media/projects/senior-capstone/tf-idf.png" alt="TF-IDF formula: tf-idf equals term frequency times inverse document frequency">
+            <figcaption>TF-IDF Combination</figcaption>
+          </figure>
+          <p>TF-IDF is a weighted representation that highlights important, distinctive terms. This combination scales each word by both how often it appears in a description (TF) and how distinctive it is across the corpus (IDF). This weighting scheme comes from information retrieval, where the objective is to measure the relevance of a term based on both its presence in a document and its distribution across the entire collection of documents. TF–IDF provides a way to quantify that informativeness. It helps to emphasize category specific words while reducing the influence of generic terms that occur in the majority of the documents.</p>
+        </div>
+
+
+
+        <h2>Results</h2>
+        <p>Placeholder text.</p>
+
+        <!-- photo 3 -->
+        <figure class="article-figure">
+          <img class="post-img" src="/media/projects/placeholder.png" alt="">
+          <figcaption>Caption placeholder.</figcaption>
+        </figure>
+
+        <h2>Takeaways</h2>
+        <p>Placeholder text.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="current-year"></span> Julia Lizak</p>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="/work/">Work</a></li>
+          <li><a href="/projects/">Projects</a></li>
+          <li><a href="/articles/">Articles</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/golf/">Golf</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
