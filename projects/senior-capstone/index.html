@@ -42,7 +42,7 @@
         <a class="section__link stub__back" href="/projects/">&larr; Back to Projects</a>
         <p class="post-eyebrow">Saint Mary's College &middot; Fall 2025</p>
         <h1 class="stub__title">Senior Capstone</h1>
-        <p class="post-lede">A semester long project where I brought together mathematics, computer science, and real-world language analysis.</p>
+        <p class="post-lede">A semester-long project where I brought together mathematics, computer science, and real-world language analysis.</p>
 
         <figure class="article-figure article-figure--narrow">
           <img class="post-img" src="/media/projects/senior-capstone/me.jpg" alt="Julia Lizak with her Senior Capstone">
@@ -50,49 +50,161 @@
 
         <!-- ######### BODY ######### -->
         <h2>Overview</h2>
-        <p>I explored how we can represent and analyze text using TF-IDF, vectorization techniques, and logistic regression. Using a small dataset of Saint Mary\'s course descriptions, I built and trained a model that identifies how Mathematics and English Literature course descriptions differ through their term-frequency patterns and feature weights.</p>
+        <p>I explored how we can represent and analyze text using TF-IDF, vectorization techniques, and logistic regression. Using a small dataset of Saint Mary's course descriptions, I built and trained a model that identifies how Mathematics and English Literature course descriptions differ through their term-frequency patterns and feature weights.</p>
+        <details class="project-abstract">
+          <summary>Read the abstract</summary>
+          <p>This project explores how textual data can be represented and analyzed using foundational mathematical tools from statistics and information retrieval. We focus on the task of classifying a subset of Saint Mary&rsquo;s College course descriptions as either Mathematics (MATH) or English Literature (ENLT) using a fully interpretable model. After cleaning and tokenizing the dataset, each description is transformed into a numerical vector using the Term Frequency-Inverse Document Frequency (TF-IDF) weighting scheme, which quantifies both the prominence and distinctiveness of words across the corpus. Logistic regression is then applied to these TF-IDF features to model the probability that a description belongs to the MATH category through the log-odds framework. We examine how individual terms influence predictions, interpret the fitted coefficients, and evaluate the model&rsquo;s performance on the dataset. This project highlights how transparent mathematical methods can form a strong foundation for understanding more complex natural language processing systems.</p>
+        </details>
 
         <h2>The Motivation</h2>
-        <p>Understanding how computers process language has become central to data science and modern artificial intelligence. On a large scale, these are applications we interact with on a day to day basis. Everything from speaking assistant like siri, chat bots, to text message autocorrect, filters for spam messages, and language translate tools like google translate. Understanding the foundational concepts of how computers process language is the core of this project and will get me to understanding these larger models. I chose text classification as my focus.</p>
+        <p>Understanding how computers process language has become central to data science and modern artificial intelligence. We interact with these applications every day, from voice assistants like Siri and chatbots to text message autocorrect, spam filters, and translation tools like Google Translate. Learning the foundational concepts behind how computers process language is the core of this project, and the first step toward understanding these larger models. To build that foundation, I chose text classification as my focus.</p>
         <p>Language surrounds nearly every aspect of our lives, and understanding language can be hard, especially for machines. Humans can understand meaning, but machines only interpret numbers, so we have to turn the text into machine-interpretable information, and for this project I chose TF-IDF.</p>
+
+        <!-- ######### PROJECT EVOLVING ######### -->
+        <h2>How the Project Evolved</h2>
+        <p>I started with a big goal: understand how machines learn and generate language, following the same road map that leads from RNNs to Transformers and today's Large Language Models.</p>
+        <p>Through that research and feedback from my advisor, I realized how much is happening inside those larger models. Rather than treating them as a black box, I narrowed my scope to a model I could explain at every step: TF-IDF features with logistic regression. My goal shifted from knowing <em>that</em> a model works to understanding <em>why</em> it works.</p>
+
+        <h2>Three Talks, One Semester</h2>
+        <p>The project was built around a progression of three talks, each longer and more technical than the last. Every talk ended with an open Q&amp;A panel from my advisor and classmates.</p>
+        <ol class="project-timeline">
+          <li>
+            <p class="project-timeline__meta">Talk 1 &middot; 20 minutes</p>
+            <h3>Laying the Foundation</h3>
+            <p>An introduction to machine learning and natural language processing, tracing the path from early rule-based systems to logistic regression, RNNs, and Transformers.</p>
+          </li>
+          <li>
+            <p class="project-timeline__meta">Talk 2 &middot; 30 minutes</p>
+            <h3>Applying It to Real Data</h3>
+            <p>A walk through TensorFlow's IMDB sentiment classification tutorial, covering the full workflow of loading and splitting data, vectorizing text, training a model, and evaluating its performance.</p>
+          </li>
+          <li>
+            <p class="project-timeline__meta">Final Talk &middot; 45 minutes + 15-minute technical Q&amp;A</p>
+            <h3>My Model, Start to Finish</h3>
+            <p>The full TF-IDF and logistic regression model built on Saint Mary's course descriptions, from the math behind it to the results. It closed with a technical Q&amp;A from my advisor, guests, and another professor in the department.</p>
+          </li>
+        </ol>
+        <p>Alongside the talks, the paper went through its own milestones: an initial draft before the second talk, then alpha and beta versions, and a final paper delivered to three faculty readers a week before the final talk.</p>
+
+        <!-- ######### METHODS/IMPLEMENTATION ######### -->
+        <h2>My Approach</h2>
+        <ol class="project-steps">
+          <li><strong>Built the dataset.</strong> I collected 20 course descriptions from the Saint Mary's College Bulletin, 10 Mathematics and 10 English Literature, and labeled each one.</li>
+          <li><strong>Cleaned the text.</strong> I lowercased each description, removed punctuation and common stop words, and split it into individual tokens.</li>
+          <li><strong>Turned words into numbers.</strong> I used TF-IDF to give each word a weight based on how often it appears in a description and how distinctive it is across all of them.</li>
+          <li><strong>Trained the model.</strong> I fit a logistic regression classifier on those TF-IDF features to predict whether a description belongs to Math or English.</li>
+          <li><strong>Interpreted the results.</strong> I looked at the model's coefficients to see which words pushed a prediction toward each subject, and tested it on a description it had never seen.</li>
+        </ol>
+
+        <figure class="article-figure article-figure--paper">
+          <img src="/media/projects/senior-capstone/smc-courses-sample.png" alt="Table of two dataset entries: MATH 103 Precalculus and ENLT 216 Literature of Social Justice, each with its label and a truncated course description" loading="lazy">
+          <figcaption>Two of the 20 labeled course descriptions from the Saint Mary's College Bulletin (descriptions truncated).</figcaption>
+        </figure>
+
+        <h2>Tools &amp; Skills</h2>
+        <ul class="project-tools">
+          <li>Python</li>
+          <li>pandas</li>
+          <li>NumPy</li>
+          <li>scikit-learn</li>
+          <li>Google Colab</li>
+          <li>TensorFlow</li>
+          <li>LaTeX</li>
+          <li>Logistic Regression</li>
+          <li>TF-IDF</li>
+          <li>Text Preprocessing</li>
+          <li>Statistical Modeling</li>
+          <li>Technical Writing</li>
+          <li>Public Speaking</li>
+        </ul>
+
+        <!-- ######### RESULTS ######### -->
+        <h2>Results</h2>
+        <p>The model correctly classified all 20 course descriptions it was trained on. With a dataset that small, that mostly shows the model learned the training examples, so the real test was something new: I gave it a statistics course description it had never seen, and it predicted Mathematics with about 58.5% probability. Words like "math," "modeling," and "topics" pushed the prediction toward Math, and because every word has its own weight, I could explain exactly why the model made that call.</p>
+
+        <figure class="article-figure project-terms">
+          <div class="project-terms__cols">
+            <div>
+              <h3>Top Math terms</h3>
+              <ol>
+                <li><span>math</span><span>0.544</span></li>
+                <li><span>linear</span><span>0.288</span></li>
+                <li><span>mathematical</span><span>0.274</span></li>
+                <li><span>modeling</span><span>0.219</span></li>
+                <li><span>geometry</span><span>0.219</span></li>
+                <li><span>emphasis</span><span>0.218</span></li>
+                <li><span>topics</span><span>0.215</span></li>
+                <li><span>prerequisite</span><span>0.210</span></li>
+                <li><span>rational</span><span>0.202</span></li>
+                <li><span>equations</span><span>0.194</span></li>
+              </ol>
+            </div>
+            <div>
+              <h3>Top English Literature terms</h3>
+              <ol>
+                <li><span>literature</span><span>&minus;0.325</span></li>
+                <li><span>literary</span><span>&minus;0.324</span></li>
+                <li><span>writing</span><span>&minus;0.223</span></li>
+                <li><span>women</span><span>&minus;0.218</span></li>
+                <li><span>readings</span><span>&minus;0.205</span></li>
+                <li><span>contemporary</span><span>&minus;0.200</span></li>
+                <li><span>animals</span><span>&minus;0.186</span></li>
+                <li><span>health</span><span>&minus;0.186</span></li>
+                <li><span>1960s</span><span>&minus;0.181</span></li>
+                <li><span>writers</span><span>&minus;0.181</span></li>
+              </ol>
+            </div>
+          </div>
+          <figcaption>The ten words with the strongest weights for each subject. Positive weights push a description toward Math, and negative weights push it toward English Literature.</figcaption>
+        </figure>
+
+        <!-- ######### LEARNED ######### -->
+        <h2>What I Learned</h2>
+        <p>The biggest lesson was the value of a strong foundation. Simple, interpretable models use the same core ideas as RNNs and Transformers: representing text as numbers, weighting the words that matter, and learning parameters from data. Working through every step by hand gave me a much clearer picture of how those larger models work.</p>
+        <p>I also saw the limits of this approach. TF-IDF treats text as a "bag of words," so it ignores word order and context, which is exactly the problem more advanced language models are built to solve. Beyond the technical side, this project taught me how to scope a large problem, take feedback, and explain complex math to a general audience across three talks and a final paper.</p>
 
         <h2>Key Concepts</h2>
 
-        <h3>Large Language Models</h3>
-        <p></p>
+        <div class="project-concepts">
+          <h3>Large Language Models</h3>
+          <p>An LLM is a type of foundational model trained on large amounts of data. This training allows it to understand and generalize natural language, often producing text that sounds human-like. Because of these foundational capabilities, a single LLM can drive many different applications and handle a wide range of tasks. Well-known examples include OpenAI's GPT-3 and GPT-4 and Google's Gemini.</p>
 
-        <h3>Machine Learning</h3>
-        <p>ML is when computers learn from data in order to make predictions, without being explicitly programmed with rules. Instead of an engineer writing every rule by hand, the model discovers these rules from examples, like learning whether a movie review is positive or negative by studying thousands of labeled reviews.</p>
+          <h3>Machine Learning</h3>
+          <p>ML is when computers learn from data in order to make predictions, without being explicitly programmed with rules. Instead of an engineer writing every rule by hand, the model discovers these rules from examples, like learning whether a movie review is positive or negative by studying thousands of labeled reviews.</p>
 
-        <h3>Natural Language Processing</h3>
-        <p>NLP is the practice of using computers to interpret and work with human language. Natural languages have evolved over time through everyday use, unlike programming languages, which are designed from a fixed set of rules before anyone uses them. This evolution is what makes them “natural,” but it also makes them messy, ambiguous, and always changing, and that is what makes them hard for machines to understand.</p>
+          <h3>Natural Language Processing</h3>
+          <p>NLP is the practice of using computers to interpret and work with human language. Natural languages have evolved over time through everyday use, unlike programming languages, which are designed from a fixed set of rules before anyone uses them. This evolution is what makes them “natural,” but it also makes them messy, ambiguous, and always changing, and that is what makes them hard for machines to understand.</p>
 
-        <h3>Recurrent Nueral Network</h3>
-        <p>A RNN is a type of deep nueral network designed for sequential data, like sentences or time series. It reads inputs one step at a time and keeps a "memory" of what came before, so each prediction is shaped by the earlier input, as well as the current one.</p>
+          <h3>Recurrent Neural Network</h3>
+          <p>An RNN is a type of deep neural network designed for sequential data, like sentences or time series. It reads inputs one step at a time and keeps a "memory" of what came before, so each prediction is shaped by the earlier input, as well as the current one.</p>
 
-        <h3>Term Frequency - Inverse Document Frequency</h3>
-        <div class="article-wrap">
-          <!-- photo 2 -->
-          <figure class="article-wrap__media">
-            <img src="/media/projects/senior-capstone/tf-idf.png" alt="TF-IDF formula: tf-idf equals term frequency times inverse document frequency">
-            <figcaption>TF-IDF Combination</figcaption>
+          <h3>Term Frequency - Inverse Document Frequency</h3>
+          <p>TF-IDF is a weighted representation that highlights important, distinctive terms. This combination scales each word by both how often it appears in a description (TF) and how distinctive it is across the corpus (IDF). This weighting scheme comes from information retrieval, where the objective is to measure the relevance of a term based on both its presence in a document and its distribution across the entire collection of documents. TF-IDF provides a way to quantify that informativeness. It helps to emphasize category-specific words while reducing the influence of generic terms that occur in the majority of the documents.</p>
+          <figure class="article-figure project-formulas">
+            <img src="/media/projects/senior-capstone/tf-formula.png" alt="tf of t in d equals the number of times t appears in d divided by the total number of terms in d" width="332" height="66" loading="lazy">
+            <img src="/media/projects/senior-capstone/idf-formula.png" alt="idf of t equals the log of N divided by df of t" width="182" height="70" loading="lazy">
+            <img src="/media/projects/senior-capstone/tfidf-formula.png" alt="tf-idf of t in d equals tf of t in d times idf of t" width="206" height="56" loading="lazy">
+            <figcaption>Term frequency, inverse document frequency, and their product. N is the number of descriptions, and df is how many of them contain the term t.</figcaption>
           </figure>
-          <p>TF-IDF is a weighted representation that highlights important, distinctive terms. This combination scales each word by both how often it appears in a description (TF) and how distinctive it is across the corpus (IDF). This weighting scheme comes from information retrieval, where the objective is to measure the relevance of a term based on both its presence in a document and its distribution across the entire collection of documents. TF–IDF provides a way to quantify that informativeness. It helps to emphasize category specific words while reducing the influence of generic terms that occur in the majority of the documents.</p>
         </div>
 
+        <!-- ######### PAPER + TALK ######### -->
+        <div class="project-paper">
+          <h2>Read the Paper &amp; Talk</h2>
+          <p>Want the math, code, and full walk-through? Check out my complete senior capstone paper and the slides from my final talk.</p>
+          <div class="project-paper__docs">
+            <a class="project-paper__doc" href="/media/projects/senior-capstone/lizak-senior-capstone-paper.pdf" target="_blank" rel="noopener">
+              <img src="/media/projects/senior-capstone/lizak-senior-capstone-paper-cover.jpg" alt="First page of the paper Understanding Language with Machines" loading="lazy">
+              <span>Final Paper (PDF) &rarr;</span>
+            </a>
+            <a class="project-paper__doc" href="/media/projects/senior-capstone/lizak-senior-capstone-final-talk.pdf" target="_blank" rel="noopener">
+              <img src="/media/projects/senior-capstone/lizak-senior-capstone-final-talk-cover.jpg" alt="Title slide of the final talk Understanding Language with Machines" loading="lazy">
+              <span>Final Talk (PDF) &rarr;</span>
+            </a>
+          </div>
+        </div>
 
-
-        <h2>Results</h2>
-        <p>Placeholder text.</p>
-
-        <!-- photo 3 -->
-        <figure class="article-figure">
-          <img class="post-img" src="/media/projects/placeholder.png" alt="">
-          <figcaption>Caption placeholder.</figcaption>
-        </figure>
-
-        <h2>Takeaways</h2>
-        <p>Placeholder text.</p>
+        <p class="project-top"><a class="section__link" href="#top">&uarr; Back to top</a></p>
       </div>
     </section>
   </main>

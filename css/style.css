@@ -676,7 +676,8 @@ button {
 
 .site-footer nav ul {
   display: flex;
-  gap: var(--space-4);
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
 }
 
 .site-footer a {
@@ -731,6 +732,11 @@ button {
   .site-footer .container {
     flex-direction: column;
     align-items: flex-start;
+    padding-inline: var(--gutter);
+  }
+
+  .site-footer nav ul {
+    column-gap: var(--space-3);
   }
 }
 
@@ -1586,4 +1592,234 @@ button {
   .article-row__arrow {
     display: none;
   }
+}
+
+/* =========================================================
+   Project pages
+   ========================================================= */
+
+/* Tools & skills shown as tags */
+.project-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.project-tools li {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  background: var(--color-field-bg);
+}
+
+/* Numbered steps */
+.project-steps {
+  list-style: decimal;
+  padding-left: var(--space-4);
+}
+
+.project-steps li {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: #333333;
+  padding-left: var(--space-1);
+}
+
+.project-steps li + li {
+  margin-top: var(--space-2);
+}
+
+/* Link to a full write-up at the bottom of a project */
+.project-paper {
+  margin-top: var(--space-6);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  background: var(--color-field-bg);
+  text-align: center;
+}
+
+.project-paper h2 {
+  margin: 0;
+}
+
+.project-paper p {
+  margin-top: var(--space-2);
+}
+
+.project-paper__docs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+/* Cover thumbnail linking to a PDF; cropped to 16:9 near the top so the
+   paper's title and the talk's title slide both show */
+.project-paper__doc {
+  display: block;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.project-paper__doc img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center 15%;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.project-paper__doc span {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.project-paper__doc:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Glossary of key terms, indented under its section heading */
+.project-concepts {
+  padding-left: var(--space-4);
+}
+
+.prose .project-concepts h3 {
+  margin-top: var(--space-4);
+  font-size: var(--text-lg);
+}
+
+.prose .project-concepts p {
+  margin-top: var(--space-2);
+}
+
+/* Tables and lists exported from the paper; shown at full width, uncropped */
+.article-figure--paper img {
+  width: 100%;
+  height: auto;
+}
+
+/* Two ranked word lists with their model weights */
+.project-terms__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  background: var(--color-field-bg);
+}
+
+.prose .project-terms h3 {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.prose .project-terms ol {
+  list-style: none;
+  padding-left: 0;
+}
+
+.project-terms li {
+  display: flex;
+  justify-content: space-between;
+  padding-block: var(--space-1);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+}
+
+.project-terms li span + span {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+}
+
+/* Stack of equations, centered at their natural size */
+.project-formulas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.project-formulas img {
+  height: auto;
+}
+
+.project-formulas figcaption {
+  align-self: stretch;
+}
+
+/* Link back up to the top of a long project page */
+.prose .project-top {
+  margin-top: var(--space-5);
+  text-align: center;
+}
+
+/* Vertical timeline of milestones */
+.project-timeline {
+  list-style: none;
+  border-left: 2px solid var(--color-border);
+  padding-left: var(--space-4);
+}
+
+.project-timeline li {
+  position: relative;
+}
+
+.project-timeline li + li {
+  margin-top: var(--space-5);
+}
+
+.project-timeline li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--space-4) - 7px);
+  top: 0.35em;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-invert-bg);
+  border: 2px solid var(--color-bg);
+}
+
+.prose .project-timeline h3 {
+  margin-top: var(--space-1);
+}
+
+.project-timeline p {
+  margin-top: var(--space-2);
+}
+
+.prose .project-timeline__meta {
+  margin-top: 0;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* Collapsible abstract */
+.project-abstract {
+  border-left: 2px solid var(--color-border);
+  padding-left: var(--space-3);
+}
+
+.project-abstract summary {
+  cursor: pointer;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.project-abstract p {
+  margin-top: var(--space-3);
+  font-style: italic;
 }
