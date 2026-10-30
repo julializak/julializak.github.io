@@ -93,9 +93,9 @@
         </ol>
 
         <!-- ######### LOCAL PREVIEW ######### -->
-        <h2>Seeing Edits in Real Time</h2>
-        <div class="budget-cols">
+        <div class="budget-cols budget-cols--flush">
           <div class="prose">
+            <h2>Seeing Edits in Real Time</h2>
             <p>Early on, every change meant committing, pushing to GitHub, and waiting for GitHub Pages to rebuild before I could see it. That's slow when you're nudging a photo a few pixels at a time.</p>
             <p>Now I run a local server from my project folder with one command. The site loads at <code>localhost</code>, I refresh to see each edit instantly, and I only push to GitHub once a page is ready to go live.</p>
           </div>
@@ -104,12 +104,8 @@
 <pre><code><span class="terminal-card__note"># preview locally while I edit</span>
 <span class="terminal-card__prompt">$</span> npx serve .
 <span class="terminal-card__serve"><span class="terminal-card__ok">Serving!</span>
-
 <strong>- Local:</strong>  http://localhost:3000
-
-<span class="terminal-card__out">Copied local address to clipboard!</span></span>
-
-<span class="terminal-card__note"># publish when it's ready</span>
+<span class="terminal-card__out">Copied local address to clipboard!</span></span><span class="terminal-card__note"># publish when it's ready</span>
 <span class="terminal-card__prompt">$</span> git add -A
 <span class="terminal-card__prompt">$</span> git commit -m "senior capstone page"
 <span class="terminal-card__prompt">$</span> git push origin main</code></pre>

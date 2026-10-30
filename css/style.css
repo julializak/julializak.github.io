@@ -2023,6 +2023,15 @@ button {
   padding-top: var(--space-5);
 }
 
+/* Start the heading flush with the top of the figure beside it */
+.prose .budget-cols--flush {
+  margin-top: var(--space-6);
+}
+
+.prose .budget-cols--flush h2 {
+  margin-top: 0;
+}
+
 /* Portfolio page: terminal snippet */
 .terminal-card {
   margin: 0;
@@ -2068,9 +2077,10 @@ button {
 
 /* Recreates the box `npx serve` prints with the localhost link */
 .terminal-card__serve {
-  display: inline-block;
-  margin-block: var(--space-2);
-  padding: var(--space-3) var(--space-4);
+  display: block;
+  width: fit-content;
+  margin-block: var(--space-2) var(--space-3);
+  padding: var(--space-2) var(--space-3);
   border: 1px solid #5aa832;
   border-radius: 4px;
 }
