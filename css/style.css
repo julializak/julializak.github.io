@@ -637,8 +637,20 @@ button {
   background-color: var(--color-bg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right center;
+  /* Anchor to the bottom so the image's built-in fade to white always shows */
+  background-position: right bottom;
   background-image: url("/media/page-banner.webp");
+}
+
+.page-banner .stub {
+  min-height: 0;
+  padding-bottom: var(--space-6);
+}
+
+/* Let the banner's fade flow straight into the content, no divider line */
+.page-banner + .section {
+  border-top: 0;
+  padding-top: var(--space-5);
 }
 
 .stub {
@@ -2014,11 +2026,6 @@ button {
 }
 
 /* Portfolio page: banner behind the title */
-.portfolio-hero .stub {
-  min-height: 0;
-  padding-bottom: var(--space-6);
-}
-
 .portfolio-body {
   padding-top: var(--space-5);
 }
@@ -2187,4 +2194,13 @@ button {
   .prose .portfolio-facts {
     padding: var(--space-1) var(--space-4) var(--space-4);
   }
+}
+
+/* Taller crop for portrait phone photos */
+.post-img--portrait {
+  aspect-ratio: 4 / 5;
+}
+
+.post-img--top {
+  object-position: center top;
 }
