@@ -2012,3 +2012,140 @@ button {
 .portfolio-outro {
   padding-top: var(--space-6);
 }
+
+/* Portfolio page: banner behind the title */
+.portfolio-hero .stub {
+  min-height: 0;
+  padding-bottom: var(--space-6);
+}
+
+.portfolio-body {
+  padding-top: var(--space-5);
+}
+
+/* Portfolio page: terminal snippet */
+.terminal-card {
+  margin: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--color-field-bg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 18px 40px -28px rgba(0, 0, 0, 0.25);
+}
+
+.terminal-card__bar {
+  display: flex;
+  gap: 6px;
+  padding: 10px var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.terminal-card__bar i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d4d4d4;
+}
+
+.terminal-card pre {
+  margin: 0;
+  padding: var(--space-4);
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: var(--text-sm);
+  line-height: 1.7;
+}
+
+.terminal-card__prompt,
+.terminal-card__note,
+.terminal-card__out {
+  color: var(--color-text-muted);
+}
+
+.terminal-card__note {
+  font-style: italic;
+}
+
+/* Recreates the box `npx serve` prints with the localhost link */
+.terminal-card__serve {
+  display: inline-block;
+  margin-block: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid #5aa832;
+  border-radius: 4px;
+}
+
+.terminal-card__ok {
+  color: #3f8f1f;
+}
+
+/* Portfolio page: raised process cards */
+.process-cards {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+  padding: 0;
+}
+
+.process-cards li {
+  padding: var(--space-4);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 18px 40px -28px rgba(0, 0, 0, 0.25);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.process-cards__num {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-muted);
+}
+
+.prose .process-cards h3 {
+  margin-top: var(--space-2);
+  font-size: var(--text-lg);
+}
+
+.prose .process-cards p {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+/* Gentle lift on the portfolio cards */
+.process-cards li:hover,
+.prompt-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05), 0 28px 50px -26px rgba(0, 0, 0, 0.35);
+}
+
+.prompt-card {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+@media (max-width: 960px) {
+  .process-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-cards li,
+  .prompt-card {
+    transition: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .process-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .terminal-card pre {
+    padding: var(--space-3);
+    font-size: 0.6875rem;
+  }
+}

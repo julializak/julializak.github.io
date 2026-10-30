@@ -37,13 +37,20 @@
   <main>
 
     <!-- ######### HEADER/TITLE ######### -->
-    <section class="stub budget-intro">
-      <div class="article article--wide prose">
-        <a class="section__link stub__back" href="/projects/">&larr; Back to Projects</a>
-        <p class="post-eyebrow">Web Development &middot; Summer &ndash; Fall 2026</p>
-        <h1 class="stub__title">My Personal Portfolio</h1>
-        <p class="post-lede">The site you're on right now. Designed, hand-coded, and shipped from an empty folder with Claude Code as my pair programmer.</p>
+    <div class="page-banner portfolio-hero">
+      <section class="stub budget-intro">
+        <div class="article article--wide prose">
+          <a class="section__link stub__back" href="/projects/">&larr; Back to Projects</a>
+          <p class="post-eyebrow">Web Development &middot; Summer &ndash; Fall 2026</p>
+          <h1 class="stub__title">My Personal Portfolio</h1>
+          <p class="post-lede">The site you're on right now. Designed, written, and built from an empty folder, with Claude Code as my development partner.</p>
 
+        </div>
+      </section>
+    </div>
+
+    <section class="stub budget-intro portfolio-body">
+      <div class="article article--wide prose">
         <dl class="article-meta">
           <div><dt>Built with</dt><dd>Claude Code</dd></div>
           <div><dt>Hosted on</dt><dd>GitHub Pages</dd></div>
@@ -76,13 +83,38 @@
 
         <!-- ######### PROCESS ######### -->
         <h2>How I Built It</h2>
+        <p>This site wasn't written entirely by hand, and it wasn't handed off to AI either. My computer science background in HTML and CSS means I understand every part being built. Claude helps me spin up new pages faster and keep the whole site cohesive, and I go into the code myself to edit, write, and fine-tune the details.</p>
         <p>I started with a written project brief: goals, a sitemap, a design reference, and a tech stack. From there, every feature followed the same loop.</p>
-        <ol class="project-steps">
-          <li><strong>Describe it.</strong> Write a specific prompt: the layout, the behavior, and what it has to stay consistent with.</li>
-          <li><strong>Build it.</strong> Claude Code writes the HTML and CSS directly in my project folder.</li>
-          <li><strong>Review it.</strong> I preview it locally, screenshot what looks off, and send precise feedback until it's right.</li>
-          <li><strong>Ship it.</strong> Commit with a clear message, push to GitHub, and the live site updates.</li>
+        <ol class="process-cards">
+          <li><span class="process-cards__num">01</span><h3>Describe it</h3><p>Write a specific prompt: the layout, the behavior, and what it has to stay consistent with.</p></li>
+          <li><span class="process-cards__num">02</span><h3>Build it</h3><p>Claude Code drafts the HTML and CSS in my project folder, then I read through it and make my own edits.</p></li>
+          <li><span class="process-cards__num">03</span><h3>Review it</h3><p>I check it on my local server, screenshot what looks off, and refine it until it's right.</p></li>
+          <li><span class="process-cards__num">04</span><h3>Ship it</h3><p>Commit with a clear message, push to GitHub, and the live site updates.</p></li>
         </ol>
+
+        <!-- ######### LOCAL PREVIEW ######### -->
+        <h2>Seeing Edits in Real Time</h2>
+        <div class="budget-cols">
+          <div class="prose">
+            <p>Early on, every change meant committing, pushing to GitHub, and waiting for GitHub Pages to rebuild before I could see it. That's slow when you're nudging a photo a few pixels at a time.</p>
+            <p>Now I run a local server from my project folder with one command. The site loads at <code>localhost</code>, I refresh to see each edit instantly, and I only push to GitHub once a page is ready to go live.</p>
+          </div>
+          <figure class="terminal-card">
+            <div class="terminal-card__bar" aria-hidden="true"><i></i><i></i><i></i></div>
+<pre><code><span class="terminal-card__note"># preview locally while I edit</span>
+<span class="terminal-card__prompt">$</span> npx serve .
+<span class="terminal-card__serve"><span class="terminal-card__ok">Serving!</span>
+
+<strong>- Local:</strong>  http://localhost:3000
+
+<span class="terminal-card__out">Copied local address to clipboard!</span></span>
+
+<span class="terminal-card__note"># publish when it's ready</span>
+<span class="terminal-card__prompt">$</span> git add -A
+<span class="terminal-card__prompt">$</span> git commit -m "senior capstone page"
+<span class="terminal-card__prompt">$</span> git push origin main</code></pre>
+          </figure>
+        </div>
 
         <h2>The Timeline</h2>
         <ol class="project-timeline">
