@@ -1,0 +1,799 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Student Budget Dashboard — Demo</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap');
+
+  :root {
+    --paper: #f6f7fb;
+    --surface: #ffffff;
+    --surface-2: #fbfbfd;
+    --ink: #1b2130;
+    --ink-2: #5b6472;
+    --ink-3: #8a92a1;
+    --line: #e3e6ed;
+    --line-soft: #edeff4;
+    --accent: #2f6f5e;
+    --accent-ink: #ffffff;
+    --accent-tint: #e7f1ee;
+    --accent-tint-line: #cfe4dd;
+    --warn: #b9791f;
+    --warn-tint: #faf1e2;
+    --warn-tint-line: #f0dcb4;
+    --critical: #b5453a;
+    --critical-tint: #fbeceb;
+    --shadow: 0 1px 2px rgba(27, 33, 48, 0.04), 0 8px 24px -12px rgba(27, 33, 48, 0.12);
+    --radius: 10px;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Public Sans', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Sora', system-ui, sans-serif;
+    text-wrap: balance;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  a { color: var(--accent); }
+
+  ::selection { background: var(--accent-tint-line); }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+  button:focus-visible, a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 28px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  /* ---------- header ---------- */
+  header.top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-bottom: 4px;
+  }
+  header.top .eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 4px;
+  }
+  header.top h1 {
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  header.top .sub {
+    color: var(--ink-2);
+    font-size: 13.5px;
+    margin-top: 4px;
+  }
+  header.top .synced {
+    font-size: 12.5px;
+    color: var(--ink-3);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* ---------- balance strip ---------- */
+  .strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .tile {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    opacity: 0;
+    transform: translateY(6px);
+    animation: rise 0.5s ease forwards;
+  }
+  .tile .label {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .tile .num {
+    font-family: 'Sora', system-ui, sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .tile .foot {
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+  .dot {
+    width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+  }
+  .dot.good { background: var(--accent); }
+  .dot.warn { background: var(--warn); }
+  .dot.crit { background: var(--critical); }
+
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .tile { animation: none; opacity: 1; transform: none; }
+  }
+
+  /* ---------- card shell ---------- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 22px;
+  }
+  .card > .card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .card h2 {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .card .card-note {
+    font-size: 12.5px;
+    color: var(--ink-3);
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  /* ---------- pills / chips ---------- */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .pill.good { background: var(--accent-tint); color: var(--accent); border: 1px solid var(--accent-tint-line); }
+  .pill.warn { background: var(--warn-tint); color: var(--warn); border: 1px solid var(--warn-tint-line); }
+  .pill.crit { background: var(--critical-tint); color: var(--critical); border: 1px solid #eecac6; }
+  .pill.flat { background: var(--line-soft); color: var(--ink-2); border: 1px solid var(--line); }
+
+  .chip {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: var(--line-soft);
+    color: var(--ink-2);
+    white-space: nowrap;
+  }
+  .chip.acct-checking { background: #e8eefb; color: #2f4f8f; }
+  .chip.acct-credit { background: #fdece2; color: #a35119; }
+  .chip.needs { background: var(--warn-tint); color: var(--warn); }
+
+  /* ---------- income / rent panel ---------- */
+  .line-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid var(--line-soft);
+  }
+  .line-item:first-child { border-top: none; padding-top: 2px; }
+  .li-main { display: flex; flex-direction: column; gap: 3px; }
+  .li-main .name { font-weight: 600; font-size: 14px; }
+  .li-main .meta { font-size: 12.5px; color: var(--ink-3); }
+  .li-amt { text-align: right; font-family: 'Sora', system-ui, sans-serif; font-weight: 700; font-size: 16px; }
+  .li-amt.muted { color: var(--ink-3); font-weight: 600; font-size: 14px; }
+
+  .rent-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 4px;
+    padding: 12px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--line-soft);
+    border-radius: 8px;
+  }
+  .rent-row { display: flex; justify-content: space-between; font-size: 13.5px; }
+  .rent-row .k { color: var(--ink-2); }
+  .rent-row.total { border-top: 1px solid var(--line); padding-top: 8px; margin-top: 2px; font-weight: 700; }
+
+  /* ---------- spending / grocery budget ---------- */
+  .cat-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; }
+  .cat-row .cat-label { width: 96px; flex-shrink: 0; font-size: 13px; color: var(--ink-2); }
+  .cat-track { flex: 1; height: 8px; background: var(--line-soft); border-radius: 5px; overflow: hidden; display: block; }
+  .cat-fill { display: block; height: 100%; background: var(--accent); border-radius: 5px; }
+  .cat-amt { width: 64px; flex-shrink: 0; text-align: right; font-size: 13px; font-weight: 600; }
+
+  .budget-box {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--line-soft);
+  }
+  .budget-box .bb-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .budget-box .bb-top .bb-label { font-size: 13px; font-weight: 700; }
+  .budget-box .bb-top .bb-fig { font-family: 'Sora', system-ui, sans-serif; font-weight: 700; font-size: 14px; }
+  .budget-track { height: 10px; background: var(--line-soft); border-radius: 6px; overflow: hidden; }
+  .budget-fill { height: 100%; border-radius: 6px; background: var(--accent); transition: width 0.4s ease; }
+  .budget-fill.warn { background: var(--warn); }
+  .budget-fill.crit { background: var(--critical); }
+  .budget-foot { margin-top: 6px; font-size: 12px; color: var(--ink-3); }
+
+  /* ---------- needs review ---------- */
+  .review-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-top: 1px solid var(--line-soft);
+    font-size: 13.5px;
+  }
+  .review-item:first-child { border-top: none; padding-top: 2px; }
+  .review-item .mark { color: var(--warn); font-size: 14px; line-height: 1.4; }
+  .review-item .txt { color: var(--ink); }
+  .review-item .txt b { font-weight: 700; }
+
+  /* ---------- ledger ---------- */
+  .week-block { margin-bottom: 22px; }
+  .week-block:last-child { margin-bottom: 0; }
+  .week-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 2px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink-2);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  table.ledger { width: 100%; min-width: 600px; border-collapse: collapse; font-size: 13.5px; }
+  table.ledger th {
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-3);
+    font-weight: 600;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  table.ledger th.num, table.ledger td.num { text-align: right; }
+  table.ledger td {
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--line-soft);
+    vertical-align: middle;
+  }
+  table.ledger tr:last-child td { border-bottom: none; }
+  table.ledger td.desc { font-weight: 500; }
+  table.ledger td.amt { font-family: 'Sora', system-ui, sans-serif; font-weight: 700; white-space: nowrap; }
+  table.ledger td.amt.out { color: var(--critical); }
+  table.ledger td.amt.in { color: var(--accent); }
+  table.ledger tr.dim td { opacity: 0.55; font-style: italic; }
+  .table-scroll { overflow-x: auto; }
+
+  footer.foot {
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-3);
+    padding-top: 8px;
+  }
+
+  .empty-note {
+    font-size: 13px;
+    color: var(--ink-3);
+    padding: 10px 0;
+  }
+
+  @media (max-width: 860px) {
+    .strip { grid-template-columns: repeat(2, 1fr); }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .strip { grid-template-columns: 1fr 1fr; }
+    header.top { flex-direction: column; }
+    header.top .synced { text-align: left; }
+  }
+  .demo-banner { display:flex; gap:10px; align-items:center; padding:11px 14px; border-radius:var(--radius); background:var(--warn-tint); border:1px solid var(--warn-tint-line); color:var(--ink); font-size:13.5px; }
+  .demo-tag { flex-shrink:0; padding:2px 9px; border-radius:999px; background:var(--warn); color:#fff; font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; }
+
+  /* Portfolio embed: less bottom space, single-column tiles on phones */
+  .wrap { padding-bottom: 32px; }
+  @media (max-width: 480px) {
+    .wrap { padding: 18px 14px 24px; }
+    .strip { grid-template-columns: 1fr; }
+    .card { padding: 16px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="demo-banner" role="note"><span class="demo-tag">Demo</span><span>All names, balances, and transactions on this page are <b>made-up sample data</b>, shown for portfolio purposes only. No real account information is included.</span></div>
+
+  <header class="top">
+    <div>
+      <p class="eyebrow">Fall semester &middot; since Aug 24, 2026</p>
+      <h1>Student Budget Dashboard</h1>
+      <p class="sub">Rent, paychecks, groceries, and everything else &mdash; updated every Sunday.</p>
+    </div>
+    <div class="synced" id="syncedNote">Loading&hellip;</div>
+  </header>
+
+  <section class="strip" id="balanceStrip"></section>
+
+  <section class="grid-2">
+    <div class="card">
+      <div class="card-head">
+        <h2>Income &amp; bills</h2>
+        <span class="card-note">What comes in, and what it has to cover</span>
+      </div>
+      <div id="incomeList"></div>
+      <div style="height:10px"></div>
+      <div class="line-item" style="border-top:1px solid var(--line); padding-top:14px;">
+        <div class="li-main">
+          <span class="name">Apartment &mdash; September rent</span>
+        </div>
+        <div id="rentStatus"></div>
+      </div>
+      <div class="rent-breakdown" id="rentBreakdown"></div>
+      <div class="line-item" style="border-top:1px solid var(--line); padding-top:14px; margin-top:14px;">
+        <div class="li-main">
+          <span class="name">Credit card &mdash; statement balance</span>
+        </div>
+        <div id="creditStatus"></div>
+      </div>
+      <div class="rent-breakdown" id="creditBreakdown"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h2>Spending this month</h2>
+        <span class="card-note" id="monthLabel"></span>
+      </div>
+      <div id="categoryList"></div>
+      <div class="budget-box">
+        <div class="bb-top">
+          <span class="bb-label">Groceries budget</span>
+          <span class="bb-fig tnum" id="groceryFig"></span>
+        </div>
+        <div class="budget-track"><div class="budget-fill" id="groceryFill" style="width:0%"></div></div>
+        <div class="budget-foot" id="groceryFoot"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2>Weekly budget plan</h2>
+      <span class="card-note">What to set aside from each paycheck</span>
+    </div>
+    <div id="budgetPlan"></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2>School expenses</h2>
+      <span class="card-note">Rent, utilities, parking, and anything else tied to being at school</span>
+    </div>
+    <div id="schoolList"></div>
+  </section>
+
+  <section class="card" id="reviewCard" style="display:none;">
+    <div class="card-head">
+      <h2>Needs your input</h2>
+      <span class="card-note">Quick things I couldn't figure out on my own</span>
+    </div>
+    <div id="reviewList"></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2>Weekly ledger</h2>
+      <span class="card-note">Every transaction, grouped by the week you uploaded it</span>
+    </div>
+    <div id="ledger"></div>
+  </section>
+
+  <footer class="foot" id="savingsFoot"></footer>
+
+</div>
+
+<script>
+(function () {
+  var CATEGORY_LABEL = {
+    groceries: 'Groceries', dining: 'Dining', rent: 'Rent', utilities: 'Utilities',
+    subscriptions: 'Subscriptions', shopping: 'Shopping', fun: 'Fun', other: 'Other',
+    income: 'Income', transfer: 'Transfer', creditCardPayment: 'Card payment', unclassified: 'Needs review',
+    reimbursement: 'Reimbursement'
+  };
+  var WEEKS_PER_MONTH = 52 / 12;
+  var SPEND_CATEGORIES = ['groceries', 'dining', 'shopping', 'fun', 'subscriptions', 'utilities', 'other'];
+
+  // ---- the dashboard's data, baked into the page and updated by republishing ----
+  var DATA = {
+    config: {
+      semesterStart: '2026-08-24', groceryBudgetMonthly: 300, rentBaseMonthly: 900,
+      savingsKnownAmount: 4250.00, savingsKnownDate: '2026-08-20', savingsRatePct: 70,
+      credit: { statementBalance: 512.40, dueDate: '2026-10-02', status: 'due', asOf: '2026-09-27' },
+      income: {
+        job: { frequency: 'weekly', firstPaycheckExpected: '2026-09-04', status: 'active', hourlyRate: 20, hoursMin: 15, hoursMax: 20 },
+        ta: { frequency: 'biweekly', status: 'unknown' }
+      }
+    },
+    balances: { checking: 1842.50, checkingAsOf: '2026-09-25', credit: 624.18, creditAsOf: '2026-09-27' },
+    rent: [{ month: '2026-09', base: 900, utilities: null, total: 900, status: 'paid', paidDate: '2026-09-01' }],
+    weeks: [{
+      weekStart: '2026-09-21', weekEnd: '2026-09-27',
+      transactions: [
+        { date: '2026-09-22', description: 'Campus Café', amount: -6.25, account: 'credit', category: 'dining', status: 'posted' },
+        { date: '2026-09-24', description: 'Food Delivery App', amount: -18.4, account: 'checking', category: 'dining', status: 'posted' },
+        { date: '2026-09-24', description: 'Venmo (friend paid back for shared order)', amount: 9.2, account: 'checking', category: 'reimbursement', status: 'posted' },
+        { date: '2026-09-25', description: 'Part-time Job Payroll', amount: 412.8, account: 'checking', category: 'income', status: 'posted', source: 'job' },
+        { date: '2026-09-26', description: 'Bowling Night', amount: -24.0, account: 'credit', category: 'fun', status: 'pending' },
+        { date: '2026-09-26', description: 'Grocery Store', amount: -52.17, account: 'credit', category: 'groceries', status: 'pending' },
+        { date: '2026-09-26', description: 'Home Goods Store (kitchen supplies)', amount: -14.99, account: 'credit', category: 'groceries', status: 'pending' },
+        { date: '2026-09-26', description: 'Coffee Shop', amount: -5.75, account: 'credit', category: 'dining', status: 'pending' },
+        { date: '2026-09-26', description: 'Frozen Yogurt', amount: -6.1, account: 'credit', category: 'fun', status: 'pending' }
+      ],
+      flags: []
+    }, {
+      weekStart: '2026-09-14', weekEnd: '2026-09-20',
+      transactions: [
+        { date: '2026-09-14', description: 'Streaming Service', amount: -10.99, account: 'credit', category: 'subscriptions', status: 'posted' },
+        { date: '2026-09-14', description: 'Cloud Storage', amount: -2.99, account: 'credit', category: 'subscriptions', status: 'posted' },
+        { date: '2026-09-15', description: 'Sandwich Shop', amount: -12.45, account: 'credit', category: 'dining', status: 'posted' },
+        { date: '2026-09-16', description: 'Gas Station', amount: -38.6, account: 'credit', category: 'other', status: 'posted' },
+        { date: '2026-09-17', description: 'Online Retailer', amount: -46.2, account: 'credit', category: 'shopping', status: 'posted' },
+        { date: '2026-09-18', description: 'Part-time Job Payroll', amount: 455.3, account: 'checking', category: 'income', status: 'posted', source: 'job' },
+        { date: '2026-09-18', description: 'ATM Withdrawal', amount: -20.0, account: 'checking', category: 'other', status: 'posted' },
+        { date: '2026-09-19', description: 'Game Day Concessions', amount: -11.5, account: 'credit', category: 'fun', status: 'posted' },
+        { date: '2026-09-20', description: 'Brunch with Friends', amount: -22.8, account: 'credit', category: 'dining', status: 'posted' }
+      ],
+      flags: []
+    }, {
+      weekStart: '2026-09-07', weekEnd: '2026-09-13',
+      transactions: [
+        { date: '2026-09-09', description: 'Craft Store', amount: -17.25, account: 'credit', category: 'fun', status: 'posted' },
+        { date: '2026-09-09', description: 'Supermarket', amount: -63.4, account: 'credit', category: 'groceries', status: 'posted' },
+        { date: '2026-09-10', description: 'Birthday Gift', amount: -25.0, account: 'checking', category: 'fun', status: 'posted' },
+        { date: '2026-09-11', description: 'Part-time Job Payroll', amount: 398.15, account: 'checking', category: 'income', status: 'posted', source: 'job' },
+        { date: '2026-09-12', description: 'Movie Tickets', amount: -14.0, account: 'credit', category: 'fun', status: 'posted' },
+        { date: '2026-09-13', description: 'Online Transfer to Savings', amount: -250.0, account: 'checking', category: 'transfer', status: 'posted', savingsImpact: 250 }
+      ],
+      flags: []
+    }, {
+      weekStart: '2026-08-24', weekEnd: '2026-09-06',
+      transactions: [
+        { date: '2026-08-24', description: 'Bookstore (textbook)', amount: -42.0, account: 'credit', category: 'other', status: 'posted', school: true },
+        { date: '2026-08-25', description: 'Pharmacy', amount: -12.35, account: 'credit', category: 'other', status: 'posted' },
+        { date: '2026-08-26', description: 'Supermarket', amount: -48.9, account: 'credit', category: 'groceries', status: 'posted' },
+        { date: '2026-08-28', description: 'Pizza Place', amount: -15.6, account: 'credit', category: 'dining', status: 'posted' },
+        { date: '2026-08-30', description: 'AI Assistant Subscription', amount: -20.0, account: 'credit', category: 'subscriptions', status: 'posted' },
+        { date: '2026-08-30', description: 'Music Streaming', amount: -11.99, account: 'credit', category: 'subscriptions', status: 'posted' },
+        { date: '2026-08-31', description: 'Warehouse Club', amount: -89.75, account: 'checking', category: 'groceries', status: 'posted' },
+        { date: '2026-09-01', description: 'Venmo (roommate paid back for supplies)', amount: 30.0, account: 'checking', category: 'reimbursement', status: 'posted' },
+        { date: '2026-09-01', description: 'Transfer from Savings (covers rent)', amount: 900.0, account: 'checking', category: 'transfer', status: 'posted', savingsImpact: -900 },
+        { date: '2026-09-01', description: 'Apartment Rent (September)', amount: -900.0, account: 'checking', category: 'rent', status: 'posted', school: true },
+        { date: '2026-09-02', description: 'Campus Parking Permit', amount: -60.0, account: 'checking', category: 'other', status: 'posted', school: true },
+        { date: '2026-09-04', description: 'Part-time Job Payroll', amount: 380.4, account: 'checking', category: 'income', status: 'posted', source: 'job' },
+        { date: '2026-09-05', description: 'Clothing Store', amount: -34.99, account: 'credit', category: 'shopping', status: 'posted' }
+      ],
+      flags: []
+    }]
+  };
+
+  var money = function (n, opts) {
+    opts = opts || {};
+    var v = Number(n) || 0;
+    var neg = v < 0;
+    var abs = Math.abs(v);
+    var s = '$' + abs.toLocaleString('en-US', { minimumFractionDigits: opts.cents === false ? 0 : 2, maximumFractionDigits: opts.cents === false ? 0 : 2 });
+    return (neg ? '−' : (opts.plus ? '+' : '')) + s;
+  };
+  var fmtDate = function (iso) {
+    if (!iso) return '—';
+    var p = iso.split('-');
+    var d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  };
+  var monthKeyOf = function (iso) { return iso.slice(0, 7); };
+  var esc = function (s) { return String(s == null ? '' : s); };
+
+  function render(state) {
+    var config = state.config, balances = state.balances, rentDocs = state.rent, weeks = state.weeks;
+    var todayMonth = weeks.length ? monthKeyOf(weeks[0].weekStart) : monthKeyOf(new Date().toISOString());
+
+    // -------- balance strip --------
+    var savingsDelta = 0;
+    weeks.forEach(function (w) {
+      (w.transactions || []).forEach(function (t) {
+        if (typeof t.savingsImpact === 'number' && t.date > config.savingsKnownDate) savingsDelta += t.savingsImpact;
+      });
+    });
+    var savingsEstimate = (config.savingsKnownAmount || 0) + savingsDelta;
+
+    var rentCurrent = rentDocs && rentDocs.length ? rentDocs[0] : null;
+
+    var strip = document.getElementById('balanceStrip');
+    strip.innerHTML =
+      tile('Checking', money(balances.checking), 'as of ' + fmtDate(balances.checkingAsOf), 'good') +
+      tile('Credit card balance', money(balances.credit), 'incl. pending, as of ' + fmtDate(balances.creditAsOf), 'warn') +
+      tile('Savings (estimate)', money(savingsEstimate), 'from $' + Number(config.savingsKnownAmount).toLocaleString() + ' on ' + fmtDate(config.savingsKnownDate), 'good') +
+      tile('Rent this month', money(rentCurrent ? rentCurrent.total : config.rentBaseMonthly), (rentCurrent && rentCurrent.status === 'paid' ? 'Paid' : 'Pending draft'), rentCurrent && rentCurrent.status === 'paid' ? 'good' : 'warn');
+
+    function tile(label, num, foot, dot) {
+      return '<div class="tile"><div class="label">' + esc(label) + '<span class="dot ' + dot + '"></span></div>' +
+        '<div class="num tnum">' + num + '</div><div class="foot">' + esc(foot) + '</div></div>';
+    }
+
+    document.getElementById('syncedNote').textContent = 'Data through ' + fmtDate(weeks.length ? weeks[0].weekEnd : '') ;
+
+    // -------- income & rent --------
+    var incomeTx = [];
+    weeks.forEach(function (w) { (w.transactions || []).forEach(function (t) { if (t.category === 'income') incomeTx.push(t); }); });
+    var jobTotal = incomeTx.filter(function (t) { return t.source === 'job'; }).reduce(function (s, t) { return s + t.amount; }, 0);
+    var taTotal = incomeTx.filter(function (t) { return t.source === 'ta'; }).reduce(function (s, t) { return s + t.amount; }, 0);
+
+    var rw = config.income && config.income.job || {};
+    var ta = config.income && config.income.ta || {};
+
+    var incomeHtml = '';
+    incomeHtml += incomeRow('Part-time job', jobTotal, rw.status === 'starting'
+      ? 'Weekly &middot; first paycheck expected ' + fmtDate(rw.firstPaycheckExpected)
+      : 'Weekly', jobTotal > 0);
+    incomeHtml += incomeRow('TA stipend', taTotal, ta.status === 'unknown'
+      ? 'Biweekly &middot; start date not confirmed yet'
+      : 'Biweekly', taTotal > 0);
+    document.getElementById('incomeList').innerHTML = incomeHtml;
+
+    function incomeRow(name, total, meta, received) {
+      return '<div class="line-item"><div class="li-main"><span class="name">' + name + '</span><span class="meta">' + meta + '</span></div>' +
+        '<div class="li-amt' + (received ? '' : ' muted') + ' tnum">' + (received ? money(total, { plus: true }) : 'Not received yet') + '</div></div>';
+    }
+
+    document.getElementById('rentStatus').innerHTML = '<span class="pill ' + (rentCurrent && rentCurrent.status === 'paid' ? 'good' : 'warn') + '">' +
+      (rentCurrent && rentCurrent.status === 'paid' ? 'Paid' : 'Pending') + '</span>';
+
+    var util = rentCurrent && typeof rentCurrent.utilities === 'number' ? money(rentCurrent.utilities) : 'TBD';
+    document.getElementById('rentBreakdown').innerHTML =
+      '<div class="rent-row"><span class="k">Base rent</span><span class="tnum">' + money((rentCurrent && rentCurrent.base) || config.rentBaseMonthly) + '</span></div>' +
+      '<div class="rent-row"><span class="k">Utilities</span><span class="tnum">' + util + '</span></div>' +
+      '<div class="rent-row total"><span class="k">Total</span><span class="tnum">' + money((rentCurrent && rentCurrent.total) || config.rentBaseMonthly) + (util === 'TBD' ? ' + utilities' : '') + '</span></div>';
+
+    // -------- credit statement --------
+    var disc = config.credit || {};
+    document.getElementById('creditStatus').innerHTML = '<span class="pill ' + (disc.status === 'paid' ? 'good' : 'warn') + '">' +
+      (disc.status === 'paid' ? 'Paid' : 'Due') + '</span>';
+    document.getElementById('creditBreakdown').innerHTML =
+      '<div class="rent-row"><span class="k">Statement balance</span><span class="tnum">' + money(disc.statementBalance || 0) + '</span></div>' +
+      '<div class="rent-row"><span class="k">Due date</span><span class="tnum">' + fmtDate(disc.dueDate) + '</span></div>' +
+      '<div class="rent-row" style="font-size:11.5px; color:var(--ink-3);">This is what’s owed on the last closed statement, not your current running balance above.</div>';
+
+    // -------- spending by category (current month) --------
+    var catTotals = {};
+    SPEND_CATEGORIES.forEach(function (c) { catTotals[c] = 0; });
+    weeks.forEach(function (w) {
+      (w.transactions || []).forEach(function (t) {
+        if (monthKeyOf(t.date) !== todayMonth) return;
+        if (SPEND_CATEGORIES.indexOf(t.category) !== -1 && t.amount < 0) {
+          catTotals[t.category] += Math.abs(t.amount);
+        }
+      });
+    });
+    var maxCat = Math.max.apply(null, Object.keys(catTotals).map(function (k) { return catTotals[k]; }).concat([1]));
+    var catRows = Object.keys(catTotals)
+      .filter(function (k) { return catTotals[k] > 0; })
+      .sort(function (a, b) { return catTotals[b] - catTotals[a]; })
+      .map(function (k) {
+        var pct = Math.round((catTotals[k] / maxCat) * 100);
+        return '<div class="cat-row"><span class="cat-label">' + CATEGORY_LABEL[k] + '</span>' +
+          '<span class="cat-track"><span class="cat-fill" style="width:' + pct + '%"></span></span>' +
+          '<span class="cat-amt tnum">' + money(catTotals[k], { cents: false }) + '</span></div>';
+      }).join('');
+    document.getElementById('categoryList').innerHTML = catRows || '<p class="empty-note">Nothing logged for this month yet.</p>';
+
+    var monthLabel = new Date(Number(todayMonth.slice(0,4)), Number(todayMonth.slice(5,7)) - 1, 1)
+      .toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    document.getElementById('monthLabel').textContent = monthLabel;
+
+    var groceries = catTotals.groceries || 0;
+    var budget = config.groceryBudgetMonthly || 300;
+    var gPct = Math.min(100, Math.round((groceries / budget) * 100));
+    var fillClass = groceries > budget ? 'crit' : (gPct >= 80 ? 'warn' : '');
+    document.getElementById('groceryFig').textContent = money(groceries, { cents: false }) + ' of ' + money(budget, { cents: false });
+    var fillEl = document.getElementById('groceryFill');
+    fillEl.style.width = gPct + '%';
+    fillEl.className = 'budget-fill' + (fillClass ? ' ' + fillClass : '');
+    document.getElementById('groceryFoot').textContent = groceries > budget
+      ? ('Over by ' + money(groceries - budget, { cents: false }) + ' this month')
+      : (money(budget - groceries, { cents: false }) + ' left this month');
+
+    // -------- weekly budget plan --------
+    var rentMonthlyForPlan = (rentCurrent && rentCurrent.total) || config.rentBaseMonthly;
+    var rentWeekly = rentMonthlyForPlan / WEEKS_PER_MONTH;
+    var groceryWeekly = budget / WEEKS_PER_MONTH;
+    var subsWeekly = (catTotals.subscriptions || 0) / WEEKS_PER_MONTH;
+    var creditWeekly = (disc.status === 'paid' ? 0 : (disc.statementBalance || 0)) / WEEKS_PER_MONTH;
+    var earmarkWeekly = rentWeekly + groceryWeekly + subsWeekly + creditWeekly;
+
+    function planRow(label, weekly) {
+      return '<div class="line-item"><div class="li-main"><span class="name">' + label + '</span></div>' +
+        '<div class="li-amt tnum">' + money(weekly) + '/wk</div></div>';
+    }
+
+    var planHtml = planRow('Rent (+ utilities once billed)', rentWeekly) +
+      planRow('Groceries', groceryWeekly) +
+      planRow('Subscriptions', subsWeekly) +
+      planRow('Credit card statement (due ' + fmtDate(disc.dueDate) + ')', creditWeekly) +
+      '<div class="line-item" style="border-top:1px solid var(--line); font-weight:700;">' +
+      '<div class="li-main"><span class="name">Total to set aside</span></div>' +
+      '<div class="li-amt tnum">' + money(earmarkWeekly) + '/wk</div></div>';
+
+    var latestWeekIncome = 0;
+    if (weeks.length) {
+      (weeks[0].transactions || []).forEach(function (t) { if (t.category === 'income') latestWeekIncome += t.amount; });
+    }
+
+    if (latestWeekIncome > 0) {
+      var leftoverActual = latestWeekIncome - earmarkWeekly;
+      planHtml += '<div class="budget-box" style="margin-top:14px;">' +
+        '<div class="bb-top"><span class="bb-label">Most recent week\'s actual income</span>' +
+        '<span class="bb-fig tnum">' + money(latestWeekIncome) + '</span></div>' +
+        '<div class="budget-foot">Left for fun money + extra savings after rent, groceries, and subscriptions: <b>' + money(leftoverActual) + '</b></div></div>';
+    } else if (rw.hourlyRate && rw.hoursMin && rw.hoursMax) {
+      var lowWk = rw.hourlyRate * rw.hoursMin;
+      var highWk = rw.hourlyRate * rw.hoursMax;
+      planHtml += '<div class="budget-box" style="margin-top:14px;">' +
+        '<div class="bb-top"><span class="bb-label">Estimated job income</span>' +
+        '<span class="bb-fig tnum">' + money(lowWk) + '&ndash;' + money(highWk) + '/wk</span></div>' +
+        '<div class="budget-foot">Before taxes, at $' + rw.hourlyRate + '/hr for ' + rw.hoursMin + '&ndash;' + rw.hoursMax + ' hrs/wk &mdash; your real number will come from your bank once paychecks start (' +
+        (rw.firstPaycheckExpected ? 'first one expected ' + fmtDate(rw.firstPaycheckExpected) : 'soon') + ').</div>' +
+        '<div class="budget-foot" style="margin-top:4px;">Estimated left for fun money + extra savings, before tax and before TA: <b>' + money(lowWk - earmarkWeekly) + '&ndash;' + money(highWk - earmarkWeekly) + '</b></div></div>';
+    }
+
+    var savingsPct = config.savingsRatePct != null ? config.savingsRatePct : 70;
+    var funPct = 100 - savingsPct;
+    if (latestWeekIncome > 0) {
+      var saveAmt = latestWeekIncome * savingsPct / 100;
+      var funAmt = latestWeekIncome * funPct / 100;
+      planHtml += '<div class="budget-box" style="margin-top:10px;">' +
+        '<div class="bb-top"><span class="bb-label">Savings target (' + savingsPct + '/' + funPct + ' split)</span>' +
+        '<span class="bb-fig tnum">' + money(saveAmt) + '</span></div>' +
+        '<div class="budget-foot">Based on this week\'s actual income of ' + money(latestWeekIncome) + '. Move <b>' + money(saveAmt) + '</b> into savings this Sunday, and you\'ve got <b>' + money(funAmt) + '</b> for fun money &mdash; shopping, going out, dinner with friends.</div></div>';
+    } else if (rw.hourlyRate && rw.hoursMin && rw.hoursMax) {
+      var lowSave = lowWk * savingsPct / 100, highSave = highWk * savingsPct / 100;
+      var lowFun = lowWk * funPct / 100, highFun = highWk * funPct / 100;
+      planHtml += '<div class="budget-box" style="margin-top:10px;">' +
+        '<div class="bb-top"><span class="bb-label">Savings target (' + savingsPct + '/' + funPct + ' split)</span>' +
+        '<span class="bb-fig tnum">' + money(lowSave) + '&ndash;' + money(highSave) + '/wk</span></div>' +
+        '<div class="budget-foot">Based on the job estimate above, before tax. Estimated fun money for the week: <b>' + money(lowFun) + '&ndash;' + money(highFun) + '</b> &mdash; shopping, going out, dinner with friends.</div></div>';
+    }
+    planHtml += '<p class="empty-note" style="margin-top:10px;">TA stipend isn\'t factored in yet &mdash; once you know the amount, this plan will use your real numbers automatically.</p>';
+    document.getElementById('budgetPlan').innerHTML = planHtml;
+
+    // -------- school expenses --------
+    var schoolTx = [];
+    weeks.forEach(function (w) {
+      (w.transactions || []).forEach(function (t) {
+        if (t.school === true || t.category === 'rent' || t.category === 'utilities') schoolTx.push(t);
+      });
+    });
+    schoolTx.sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+    var schoolPaid = 0, schoolBack = 0;
+    schoolTx.forEach(function (t) { if (t.amount < 0) schoolPaid += Math.abs(t.amount); else schoolBack += t.amount; });
+
+    var schoolHtml = '';
+    if (schoolTx.length) {
+      schoolHtml += '<div class="line-item" style="padding-top:2px; border-top:none;">' +
+        '<div class="li-main"><span class="name">Total paid</span></div>' +
+        '<div class="li-amt tnum" style="color:var(--critical)">' + money(schoolPaid) + '</div></div>';
+      if (schoolBack > 0) {
+        schoolHtml += '<div class="line-item"><div class="li-main"><span class="name">Refunded / reimbursed</span></div>' +
+          '<div class="li-amt tnum" style="color:var(--accent)">' + money(schoolBack, { plus: true }) + '</div></div>';
+      }
+      schoolHtml += '<div class="table-scroll" style="margin-top:10px;"><table class="ledger"><thead><tr><th>Date</th><th>Description</th><th>Category</th><th class="num">Amount</th></tr></thead><tbody>';
+      schoolTx.forEach(function (t) {
+        var amtClass = t.amount < 0 ? 'out' : 'in';
+        schoolHtml += '<tr><td>' + fmtDate(t.date) + (t.status === 'pending' ? ' <span class="pill flat" style="padding:1px 6px;">pending</span>' : '') + '</td>' +
+          '<td class="desc">' + esc(t.description) + '</td>' +
+          '<td><span class="chip">' + (CATEGORY_LABEL[t.category] || t.category) + '</span></td>' +
+          '<td class="num amt ' + amtClass + ' tnum">' + money(t.amount, { plus: t.amount > 0 }) + '</td></tr>';
+      });
+      schoolHtml += '</tbody></table></div>';
+    } else {
+      schoolHtml = '<p class="empty-note">Nothing tagged as school-related yet.</p>';
+    }
+    document.getElementById('schoolList').innerHTML = schoolHtml;
+
+    // -------- needs review --------
+    var flags = [];
+    weeks.forEach(function (w) { (w.flags || []).forEach(function (f) { flags.push(f); }); });
+    if (flags.length) {
+      document.getElementById('reviewCard').style.display = '';
+      document.getElementById('reviewList').innerHTML = flags.map(function (f) {
+        return '<div class="review-item"><span class="mark">&#9679;</span><span class="txt">' + f.label + '</span></div>';
+      }).join('');
+    }
+
+    // -------- ledger --------
+    var ledgerHtml = weeks.map(function (w) {
+      var rows = (w.transactions || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).map(function (t) {
+        var dimRow = t.category === 'transfer' || t.category === 'creditCardPayment' || t.category === 'reimbursement';
+        var amtClass = t.amount < 0 ? 'out' : 'in';
+        var acctChip = t.account === 'checking' ? 'acct-checking' : 'acct-credit';
+        var catChip = t.category === 'unclassified' ? 'needs' : '';
+        return '<tr' + (dimRow ? ' class="dim"' : '') + '>' +
+          '<td>' + fmtDate(t.date) + (t.status === 'pending' ? ' <span class="pill flat" style="padding:1px 6px;">pending</span>' : '') + '</td>' +
+          '<td class="desc">' + esc(t.description) + '</td>' +
+          '<td><span class="chip ' + acctChip + '">' + (t.account === 'checking' ? 'Checking' : 'Credit') + '</span></td>' +
+          '<td><span class="chip ' + catChip + '">' + (CATEGORY_LABEL[t.category] || t.category) + '</span></td>' +
+          '<td class="num amt ' + amtClass + ' tnum">' + money(t.amount, { plus: t.amount > 0 }) + '</td>' +
+          '</tr>';
+      }).join('');
+      var range = fmtDate(w.weekStart) + ' – ' + fmtDate(w.weekEnd);
+      return '<div class="week-block"><div class="week-title">' + range + '</div>' +
+        '<div class="table-scroll"><table class="ledger"><thead><tr><th>Date</th><th>Description</th><th>Account</th><th>Category</th><th class="num">Amount</th></tr></thead>' +
+        '<tbody>' + rows + '</tbody></table></div></div>';
+    }).join('');
+    document.getElementById('ledger').innerHTML = ledgerHtml || '<p class="empty-note">No weeks logged yet.</p>';
+
+    document.getElementById('savingsFoot').innerHTML =
+      'Savings estimate is math, not a bank feed: starting balance of $' + Number(config.savingsKnownAmount).toLocaleString() +
+      ' on ' + fmtDate(config.savingsKnownDate) + ', adjusted for every transfer logged since.';
+  }
+
+  render(DATA);
+})();
+</script>
+
+</body></html>

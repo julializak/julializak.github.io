@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project One — Julia Lizak</title>
-  <meta name="description" content="Project One by Julia Lizak.">
+  <title>Personal Budget Dashboard — Julia Lizak</title>
+  <meta name="description" content="A personal budget dashboard Julia Lizak built with Claude to track rent, income, groceries, and savings.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -35,13 +35,65 @@
   </header>
 
   <main>
-    <section class="stub container">
-      <a class="section__link stub__back" href="/projects/">&larr; Back to Projects</a>
-      <h1 class="stub__title">Personal Budget Dashboard</h1>
-      <p class="stub__note">Create with the help of Claude Cowork</p>
-      <!-- Fix this later, just a placeholder for now -->
-      <p class="stub__note">Access it here: https://claude.ai/artifact/92hVUk6iUfbiNcwmjRfKBu</p>
+    <section class="stub budget-intro">
+      <div class="article article--wide prose">
+        <a class="section__link stub__back" href="/projects/">&larr; Back to Projects</a>
+        <p class="post-eyebrow">Claude Artifact &middot; Fall 2026</p>
+        <h1 class="stub__title">Personal Budget Dashboard</h1>
+        <p class="post-lede">A weekly dashboard I built with Claude Cowork to track my rent, paychecks, groceries, and savings in one place.</p>
+
+        <dl class="article-meta">
+          <div><dt>Built with</dt><dd>Claude Cowork + Claude Code</dd></div>
+          <div><dt>Updated</dt><dd>Weekly</dd></div>
+          <div><dt>Started</dt><dd>Fall 2026</dd></div>
+          <div><dt>Status</dt><dd>Ongoing</dd></div>
+        </dl>
+
+        <div class="budget-cols">
+          <div class="prose">
+            <h2>The Motivation</h2>
+            <p>Going into my master's year, I am balancing a part-time job, TA income, and rent for my apartment. I needed an easy way to keep myself accountable for budgeting for groceries and everyday spending, and to plan ahead with my savings.</p>
+          </div>
+          <div class="prose">
+            <h2>How It Works</h2>
+            <p>Every Sunday, I upload the week's transactions and the dashboard sorts them into categories, tracks my grocery budget for the month, and shows what to set aside from each paycheck for rent and bills. Whatever is left gets split between savings and fun money.</p>
+          </div>
+        </div>
+
+        <h2>How I Built It</h2>
+        <p>I built it through a mix of vibe coding and teaching myself how to use Claude Code on my own, along with some research into the best way to post the dashboard and keep it up to date.</p>
+        <p>To stay consistent, I set up a weekly push notification that reminds me on my phone to upload my spending from the previous week. As I keep adding to it, I fine-tune the dashboard as needed.</p>
+
+        <h2>Tools &amp; Skills</h2>
+        <ul class="project-tools">
+          <li>Claude Code</li>
+          <li>Claude Cowork</li>
+          <li>Claude Artifacts</li>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>Push Notifications</li>
+          <li>Vibe Coding</li>
+          <li>Personal Budgeting</li>
+          <li>Data Visualization</li>
+        </ul>
+      </div>
     </section>
+
+    <!-- ######### LIVE DASHBOARD ######### -->
+    <section class="post-band post-section budget-band">
+      <div class="article article--wide prose">
+        <p class="post-eyebrow">Take a look</p>
+        <h2 class="post-heading">The Dashboard</h2>
+        <p class="budget-embed__note">This version uses made-up sample data, not my real accounts. Scroll through it here, or <a href="https://claude.ai/artifact/92hVUk6iUfbiNcwmjRfKBu" target="_blank" rel="noopener">open it on Claude</a>.</p>
+      </div>
+
+      <div class="budget-embed">
+        <iframe class="budget-embed__frame" src="/projects/project-one/dashboard.html" title="Student Budget Dashboard (sample data)"></iframe>
+      </div>
+    </section>
+
+    <p class="container back-to-top"><a class="section__link" href="#top">&uarr; Back to top</a></p>
   </main>
 
   <footer class="site-footer">
@@ -61,5 +113,30 @@
   </footer>
 
   <script src="/js/main.js"></script>
+  <script>
+    // Size the embedded dashboard to its content so the page scrolls as one
+    (function () {
+      var frame = document.querySelector('.budget-embed__frame');
+      if (!frame) return;
+      function fit() {
+        try {
+          var doc = frame.contentDocument;
+          if (doc && doc.body) frame.style.height = doc.documentElement.scrollHeight + 'px';
+        } catch (e) {}
+      }
+      function watch() {
+        fit();
+        try {
+          new ResizeObserver(fit).observe(frame.contentDocument.body);
+        } catch (e) {}
+      }
+      frame.addEventListener('load', watch);
+      // The frame can finish loading before this script runs
+      try {
+        var doc = frame.contentDocument;
+        if (doc && doc.readyState === 'complete' && doc.querySelector('.wrap')) watch();
+      } catch (e) {}
+    })();
+  </script>
 </body>
 </html>

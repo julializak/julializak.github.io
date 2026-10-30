@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Two — Julia Lizak</title>
-  <meta name="description" content="Project Two by Julia Lizak.">
+  <title>My Personal Portfolio — Julia Lizak</title>
+  <meta name="description" content="How Julia Lizak designed, coded, and shipped her personal portfolio website with Claude Code, HTML, CSS, and JavaScript.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -35,11 +35,162 @@
   </header>
 
   <main>
-    <section class="stub container">
-      <a class="section__link stub__back" href="/projects/">&larr; Back to Projects</a>
-      <h1 class="stub__title">Project Two</h1>
-      <p class="stub__note">Case study coming soon.</p>
+
+    <!-- ######### HEADER/TITLE ######### -->
+    <section class="stub budget-intro">
+      <div class="article article--wide prose">
+        <a class="section__link stub__back" href="/projects/">&larr; Back to Projects</a>
+        <p class="post-eyebrow">Web Development &middot; Summer &ndash; Fall 2026</p>
+        <h1 class="stub__title">My Personal Portfolio</h1>
+        <p class="post-lede">The site you're on right now. Designed, hand-coded, and shipped from an empty folder with Claude Code as my pair programmer.</p>
+
+        <dl class="article-meta">
+          <div><dt>Built with</dt><dd>Claude Code</dd></div>
+          <div><dt>Hosted on</dt><dd>GitHub Pages</dd></div>
+          <div><dt>Started</dt><dd>July 2026</dd></div>
+          <div><dt>Status</dt><dd>Always evolving</dd></div>
+        </dl>
+
+        <!-- ######### BY THE NUMBERS ######### -->
+        <ul class="portfolio-stats" aria-label="The build by the numbers">
+          <li><strong>14</strong><span>weeks of building</span></li>
+          <li><strong>16</strong><span>Claude Code sessions</span></li>
+          <li><strong>120+</strong><span>prompts written</span></li>
+          <li><strong>40+</strong><span>Git commits</span></li>
+          <li><strong>15</strong><span>pages designed</span></li>
+          <li><strong>1,900</strong><span>lines of CSS</span></li>
+        </ul>
+
+        <div class="budget-cols">
+          <div class="prose">
+            <h2>The Motivation</h2>
+            <p>A resume only fits one page. I wanted one place that shows everything on mine, plus the parts it can't: who I am, what motivates me, what I love, and who I want to become.</p>
+            <p>So instead of a template, I built my own. Every page, from my internships to my golf career, is something I designed and wrote myself.</p>
+          </div>
+          <div class="prose">
+            <h2>How It Works</h2>
+            <p>The site is plain HTML, CSS, and JavaScript with no framework. One shared stylesheet acts as a small design system, so every page uses the same colors, type scale, and spacing.</p>
+            <p>The code lives in a public GitHub repo. Every push to <code>main</code> deploys automatically to GitHub Pages, and I preview changes on a local server before anything goes live.</p>
+          </div>
+        </div>
+
+        <!-- ######### PROCESS ######### -->
+        <h2>How I Built It</h2>
+        <p>I started with a written project brief: goals, a sitemap, a design reference, and a tech stack. From there, every feature followed the same loop.</p>
+        <ol class="project-steps">
+          <li><strong>Describe it.</strong> Write a specific prompt: the layout, the behavior, and what it has to stay consistent with.</li>
+          <li><strong>Build it.</strong> Claude Code writes the HTML and CSS directly in my project folder.</li>
+          <li><strong>Review it.</strong> I preview it locally, screenshot what looks off, and send precise feedback until it's right.</li>
+          <li><strong>Ship it.</strong> Commit with a clear message, push to GitHub, and the live site updates.</li>
+        </ol>
+
+        <h2>The Timeline</h2>
+        <ol class="project-timeline">
+          <li>
+            <p class="project-timeline__meta">July 2026</p>
+            <h3>The Foundation</h3>
+            <p>Wrote the project brief, set up Git, and scaffolded the site structure and a monochrome design system inspired by editorial portfolio sites.</p>
+          </li>
+          <li>
+            <p class="project-timeline__meta">September 2026</p>
+            <h3>Going Live</h3>
+            <p>Launched on GitHub Pages and built the core: a full-bleed homepage hero, hover-reveal project cards, a responsive header with a mobile menu, and a working contact form that keeps my email private.</p>
+          </li>
+          <li>
+            <p class="project-timeline__meta">October 2026</p>
+            <h3>Filling It With Stories</h3>
+            <p>Wrote blog-style pages for my internships at Rockwell Automation and NCR Atleos, my golf career, my senior capstone, and articles. I also embedded a live, interactive budget dashboard and compressed every image for fast load times.</p>
+          </li>
+        </ol>
+
+        <h2>Tools &amp; Skills</h2>
+        <ul class="project-tools">
+          <li>Claude Code</li>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>JavaScript</li>
+          <li>Git &amp; GitHub</li>
+          <li>GitHub Pages</li>
+          <li>Responsive Design</li>
+          <li>Prompt Engineering</li>
+          <li>Vibe Coding</li>
+          <li>Web3Forms</li>
+          <li>Image Optimization</li>
+          <li>UI/UX Design</li>
+          <li>Copywriting</li>
+        </ul>
+      </div>
     </section>
+
+    <!-- ######### PROMPTS ######### -->
+    <section class="post-band post-section budget-band">
+      <div class="article article--wide prose">
+        <p class="post-eyebrow">Behind the scenes</p>
+        <h2 class="post-heading">Prompts That Built This Site</h2>
+        <p>Vibe coding is only as good as the instructions behind it. Here are a few of the prompts I used, from the first scaffold to the latest page.</p>
+
+        <div class="prompt-grid">
+          <figure class="prompt-card">
+            <figcaption class="prompt-card__meta"><span>01</span> Scaffolding &middot; July</figcaption>
+            <blockquote class="prompt-card__text">Read PROJECT_BRIEF.md for full project context, then scaffold the site. Design direction: strict black and white, modeled after an editorial portfolio. Pure white background, black text, no color accents yet. Clean, confident sans-serif type, generous white space, and minimal borders. Set up the folder structure, a shared stylesheet with design tokens, and a page for each section of the sitemap.</blockquote>
+            <p class="prompt-card__result">A full site skeleton and the design system every page still uses.</p>
+          </figure>
+
+          <figure class="prompt-card">
+            <figcaption class="prompt-card__meta"><span>02</span> Components &middot; September</figcaption>
+            <blockquote class="prompt-card__text">On the Work and Projects pages, build a grid of square image cards. On hover, fade in an overlay with the title, a one-line description, and a &ldquo;Read more&rdquo; link that opens that item's case-study page. Start with two cards and make it easy to add more.</blockquote>
+            <p class="prompt-card__result">The hover-reveal card grid on the Work and Projects pages.</p>
+          </figure>
+
+          <figure class="prompt-card">
+            <figcaption class="prompt-card__meta"><span>03</span> Responsive Design &middot; September</figcaption>
+            <blockquote class="prompt-card__text">The header drifts as the window widens. Pin the logo and nav links to a fixed distance from each edge at every screen size. Below tablet width, collapse the nav into an accessible hamburger menu.</blockquote>
+            <p class="prompt-card__result">A header that holds its shape from phone to widescreen.</p>
+          </figure>
+
+          <figure class="prompt-card">
+            <figcaption class="prompt-card__meta"><span>04</span> Privacy &middot; October</figcaption>
+            <blockquote class="prompt-card__text">Build a contact form that delivers messages to my inbox without ever exposing my email address in the page source. Walk me through any account setup step by step.</blockquote>
+            <p class="prompt-card__result">A working form powered by Web3Forms, with my email kept private.</p>
+          </figure>
+
+          <figure class="prompt-card">
+            <figcaption class="prompt-card__meta"><span>05</span> Design Feedback &middot; October</figcaption>
+            <blockquote class="prompt-card__text">Restructure the Rockwell page into a more editorial, blog-style layout with more room for writing. Replace the polaroid photos, remove the full-width black section, and avoid dark backgrounds entirely. Keep the fonts and spacing consistent with the rest of the site.</blockquote>
+            <p class="prompt-card__result">The layout I later carried over to the NCR Atleos page.</p>
+          </figure>
+
+          <figure class="prompt-card">
+            <figcaption class="prompt-card__meta"><span>06</span> Integration &middot; October</figcaption>
+            <blockquote class="prompt-card__text">Embed my Claude Artifact budget dashboard directly on its project page so visitors can interact with it, not just follow a link. Size it to its content so the page scrolls as one, and use sample data instead of my real accounts.</blockquote>
+            <p class="prompt-card__result">The live dashboard on my <a href="/projects/project-one/">Budget Dashboard</a> page.</p>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ######### LEARNED ######### -->
+    <section class="stub budget-intro portfolio-outro">
+      <div class="article article--wide prose">
+        <div class="budget-cols">
+          <div class="prose">
+            <h2>How I Learned</h2>
+            <p>My computing degree from Saint Mary's and my master's work at Notre Dame gave me the foundation. Shipping a real website taught me the rest.</p>
+            <p>I learned Git by committing every change, learned to deploy by putting my own site on the internet, and learned to debug by figuring out why a header wouldn't line up. Most of all, I learned how to talk to an AI tool like a teammate: clear goals, specific feedback, and never accepting the first draft.</p>
+          </div>
+          <div class="prose">
+            <h2>What I Learned</h2>
+            <p>AI makes building faster, but it doesn't make the decisions. Every layout, word, and photo on this site went through rounds of my own feedback, often down to a few pixels.</p>
+            <p>The biggest lesson was that good prompts are just good communication. The more precisely I could describe what I wanted, and why, the better the result.</p>
+          </div>
+        </div>
+
+        <h2>What's Next</h2>
+        <p>This site grows as I do. Next up: more projects from my master's year, more articles, and a custom domain. If you want to see how it's all put together, <a href="https://github.com/julializak/julializak.github.io" target="_blank" rel="noopener">the code is on GitHub</a>.</p>
+      </div>
+    </section>
+
+    <p class="container back-to-top"><a class="section__link" href="#top">&uarr; Back to top</a></p>
   </main>
 
   <footer class="site-footer">
