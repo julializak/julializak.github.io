@@ -2204,3 +2204,35 @@ button {
 .post-img--top {
   object-position: center top;
 }
+
+/* Narrower photo column so the text gets more room */
+@media (min-width: 761px) {
+  .article-split--small-media {
+    grid-template-columns: 1fr 1.8fr;
+  }
+
+  .article-split--flip.article-split--small-media {
+    grid-template-columns: 1.8fr 1fr;
+  }
+
+  .article-split--small-media .article-split__media {
+    align-self: center;
+  }
+}
+
+/* Section heading that sits above a split, so the split's columns line up with each other */
+.article-split__header {
+  margin-bottom: var(--space-5);
+}
+
+.article-split--small-media .post-list {
+  margin-top: 0;
+}
+
+.post-img--upper {
+  object-position: center 25%;
+}
+
+.post-img--lower {
+  object-position: center 75%;
+}
