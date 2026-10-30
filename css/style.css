@@ -2159,3 +2159,32 @@ button {
     font-size: 0.6875rem;
   }
 }
+
+/* Portfolio page: grey panel behind the quick facts and stats */
+.prose .portfolio-facts {
+  margin-top: 0;
+  padding: var(--space-2) var(--space-5) var(--space-5);
+  background: var(--color-field-bg);
+  border-radius: 12px;
+}
+
+.prose .portfolio-facts .article-meta {
+  margin-top: 0;
+  border-top: 0;
+  border-bottom-color: #dcdcdc;
+}
+
+.prose .portfolio-facts .portfolio-stats {
+  margin-bottom: 0;
+  gap: var(--space-3);
+}
+
+.prose .portfolio-facts + * {
+  margin-top: var(--space-6);
+}
+
+@media (max-width: 760px) {
+  .prose .portfolio-facts {
+    padding: var(--space-1) var(--space-4) var(--space-4);
+  }
+}

@@ -51,6 +51,7 @@
 
     <section class="stub budget-intro portfolio-body">
       <div class="article article--wide prose">
+        <div class="portfolio-facts">
         <dl class="article-meta">
           <div><dt>Built with</dt><dd>Claude Code</dd></div>
           <div><dt>Hosted on</dt><dd>GitHub Pages</dd></div>
@@ -60,13 +61,14 @@
 
         <!-- ######### BY THE NUMBERS ######### -->
         <ul class="portfolio-stats" aria-label="The build by the numbers">
-          <li><strong>14</strong><span>weeks of building</span></li>
-          <li><strong>16</strong><span>Claude Code sessions</span></li>
+          <li><strong>14</strong><span>weeks building</span></li>
+          <li><strong>16</strong><span>Claude sessions</span></li>
           <li><strong>120+</strong><span>prompts written</span></li>
           <li><strong>40+</strong><span>Git commits</span></li>
           <li><strong>15</strong><span>pages designed</span></li>
           <li><strong>1,900</strong><span>lines of CSS</span></li>
         </ul>
+        </div>
 
         <div class="budget-cols">
           <div class="prose">
@@ -96,7 +98,7 @@
         <div class="budget-cols budget-cols--flush">
           <div class="prose">
             <h2>Seeing Edits in Real Time</h2>
-            <p>Early on, every change meant committing, pushing to GitHub, and waiting for GitHub Pages to rebuild before I could see it. That's slow when you're nudging a photo a few pixels at a time.</p>
+            <p>Early on, every change meant committing, pushing to GitHub, and waiting for GitHub Pages to rebuild before I could see it. That gets slow when I'm making quick, small edits and want to see each change as it happens.</p>
             <p>Now I run a local server from my project folder with one command. The site loads at <code>localhost</code>, I refresh to see each edit instantly, and I only push to GitHub once a page is ready to go live.</p>
           </div>
           <figure class="terminal-card">
@@ -155,7 +157,7 @@
       <div class="article article--wide prose">
         <p class="post-eyebrow">Behind the scenes</p>
         <h2 class="post-heading">Prompts That Built This Site</h2>
-        <p>Vibe coding is only as good as the instructions behind it. Here are a few of the prompts I used, from the first scaffold to the latest page.</p>
+        <p>I have learned that vibe coding is only as good as the instructions you give it. Here are a few of the prompts I used, from the first scaffold to the latest page.</p>
 
         <div class="prompt-grid">
           <figure class="prompt-card">
@@ -172,14 +174,14 @@
 
           <figure class="prompt-card">
             <figcaption class="prompt-card__meta"><span>03</span> Responsive Design &middot; September</figcaption>
-            <blockquote class="prompt-card__text">The header drifts as the window widens. Pin the logo and nav links to a fixed distance from each edge at every screen size. Below tablet width, collapse the nav into an accessible hamburger menu.</blockquote>
+            <blockquote class="prompt-card__text">The header drifts as the window widens. Pin the logo and nav links to a fixed distance from each edge at every screen size. On phones and smaller screens, collapse the nav into an accessible hamburger menu.</blockquote>
             <p class="prompt-card__result">A header that holds its shape from phone to widescreen.</p>
           </figure>
 
           <figure class="prompt-card">
             <figcaption class="prompt-card__meta"><span>04</span> Privacy &middot; October</figcaption>
-            <blockquote class="prompt-card__text">Build a contact form that delivers messages to my inbox without ever exposing my email address in the page source. Walk me through any account setup step by step.</blockquote>
-            <p class="prompt-card__result">A working form powered by Web3Forms, with my email kept private.</p>
+            <blockquote class="prompt-card__text">I found Web3Forms, a free form service that works with static sites like mine. Here's what I have: my access key [my-access-key], messages routed to my contact inbox, and the fields I want (name, email, company, phone, and message). Implement it on my Contact page now with spam protection and a success message after sending, and make sure my email address never appears in the page source.</blockquote>
+            <p class="prompt-card__result">A working contact form, with my email kept private.</p>
           </figure>
 
           <figure class="prompt-card">
@@ -203,8 +205,8 @@
         <div class="budget-cols">
           <div class="prose">
             <h2>How I Learned</h2>
-            <p>My computing degree from Saint Mary's and my master's work at Notre Dame gave me the foundation. Shipping a real website taught me the rest.</p>
-            <p>I learned Git by committing every change, learned to deploy by putting my own site on the internet, and learned to debug by figuring out why a header wouldn't line up. Most of all, I learned how to talk to an AI tool like a teammate: clear goals, specific feedback, and never accepting the first draft.</p>
+            <p>My computing degree from Saint Mary's and my master's work at Notre Dame gave me the foundation. Creating and working through a real website of my own taught me the rest.</p>
+            <p>I learned Git by committing every change, learned to deploy by putting my own site on the internet, and learned to debug by figuring out why a header wouldn't line up. Most of all, it solidified how I use AI: as a resource to work more efficiently and get the most out of my own abilities, not something to rely on blindly. I question what it gives me, understand why it works, and make the final call myself.</p>
           </div>
           <div class="prose">
             <h2>What I Learned</h2>
