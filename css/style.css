@@ -507,6 +507,19 @@ button {
   gap: var(--space-4);
 }
 
+/* Wide variant: grid runs nearly edge to edge, with a tighter gap */
+.container--wide {
+  max-width: 1800px;
+}
+
+.project-grid--wide {
+  gap: var(--space-3);
+}
+
+.project-grid--wide .project-card {
+  aspect-ratio: 5 / 3;
+}
+
 .project-card {
   position: relative;
   display: block;
@@ -644,6 +657,17 @@ button {
   border-radius: 999px;
   font-size: var(--text-sm);
   font-weight: 600;
+}
+
+/* Placeholder cards for projects that don't have a page yet */
+.project-card--soon {
+  cursor: default;
+}
+
+.project-card--soon .project-card__cta {
+  background: transparent;
+  color: var(--color-invert-text);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
 }
 
 @media (max-width: 640px) {
