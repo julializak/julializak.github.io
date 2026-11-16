@@ -1317,7 +1317,7 @@ button {
    A narrow reading column with figures, pairs and side-by-side splits.
    ========================================================================== */
 .article {
-  max-width: 720px;
+  max-width: 880px;
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
@@ -1404,7 +1404,7 @@ button {
   color: var(--color-text-muted);
 }
 
-/* Breaks out of the 720px column to a wider frame */
+/* Breaks out of the 880px column to a wider frame */
 .article-figure--wide {
   width: min(1040px, calc(100vw - var(--gutter) * 2));
   margin-left: 50%;
