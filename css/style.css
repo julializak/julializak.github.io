@@ -2436,6 +2436,11 @@ button {
   object-position: center top;
 }
 
+/* Widescreen image, e.g. a slide, shown uncropped */
+.post-img--wide {
+  aspect-ratio: 16 / 9;
+}
+
 /* Narrower photo column so the text gets more room */
 @media (min-width: 761px) {
   .article-split--small-media {
