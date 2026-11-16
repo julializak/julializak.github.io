@@ -202,11 +202,16 @@ button {
 /* ==========================================================================
    Hero
    ========================================================================== */
+/* The hero pins in place while the rest of the page slides up over it.
+   main.js sets --hero-progress (0 at the top, 1 once covered) as you scroll. */
 .hero {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 0;
   display: flex;
   align-items: center;
-  min-height: 80vh;
+  min-height: 100vh;
+  min-height: 100svh;
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)),
     url("/media/final-background.png") center / cover no-repeat;
@@ -214,6 +219,43 @@ button {
 
 .hero__inner {
   padding-block: var(--space-8) var(--space-7);
+  /* Text shrinks, drifts up, blurs, and fades as the page covers it */
+  transform-origin: center 40%;
+  transform:
+    translateY(calc(var(--hero-progress, 0) * -6vh))
+    scale(calc(1 - var(--hero-progress, 0) * 0.35));
+  filter: blur(calc(var(--hero-progress, 0) * 12px));
+  opacity: calc(1 - var(--hero-progress, 0) * 1.3);
+  will-change: transform, filter, opacity;
+}
+
+/* Everything after the hero rides above it on a solid page background */
+.hero ~ * {
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-bg);
+}
+
+.hero + .section {
+  border-top: 0;
+  box-shadow: 0 -24px 48px rgba(0, 0, 0, 0.18);
+}
+
+/* Once fully covered, stop painting the pinned hero */
+.hero.is-covered {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    position: relative;
+  }
+
+  .hero__inner {
+    transform: none;
+    filter: none;
+    opacity: 1;
+  }
 }
 
 .hero__signature {
@@ -505,32 +547,93 @@ button {
   flex-direction: column;
   justify-content: flex-end;
   padding: var(--space-5);
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.78) 100%);
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity var(--transition-base), transform var(--transition-base);
+  /* Light fade at rest so the title is always readable */
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.6) 100%);
 }
 
-.project-card:hover .project-card__overlay,
-.project-card:focus-within .project-card__overlay {
-  opacity: 1;
-  transform: translateY(0);
+/* Darker fade that fades in on hover behind the description + button */
+.project-card__overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0.78) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.project-card__overlay > * {
+  position: relative;
 }
 
 .project-card__title {
   color: var(--color-invert-text);
   font-size: var(--text-xl);
   font-weight: 600;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Description + button stay collapsed until hover/focus */
+.project-card__desc,
+.project-card__cta {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-base), opacity var(--transition-base), margin var(--transition-base);
+}
+
+.project-card:hover .project-card__overlay::before,
+.project-card:focus-within .project-card__overlay::before {
+  opacity: 1;
+}
+
+.project-card:hover .project-card__desc,
+.project-card:focus-within .project-card__desc {
+  max-height: 8em;
+  opacity: 1;
+  margin-top: var(--space-2);
+}
+
+.project-card:hover .project-card__cta,
+.project-card:focus-within .project-card__cta {
+  max-height: 4em;
+  opacity: 1;
+  margin-top: var(--space-4);
+}
+
+/* Drop the collapsed button's padding so it leaves no gap under the title */
+@media (hover: hover) {
+  .project-card:not(:hover):not(:focus-within) .project-card__cta {
+    padding-block: 0;
+  }
+}
+
+/* Touch screens have no hover, so show everything */
+@media (hover: none) {
+  .project-card__overlay::before {
+    opacity: 1;
+  }
+
+  .project-card__desc,
+  .project-card__cta {
+    max-height: none;
+    opacity: 1;
+  }
+
+  .project-card__desc {
+    margin-top: var(--space-2);
+  }
+
+  .project-card__cta {
+    margin-top: var(--space-4);
+  }
 }
 
 .project-card__desc {
-  margin-top: var(--space-2);
   color: rgba(255, 255, 255, 0.85);
   max-width: 40ch;
 }
 
 .project-card__cta {
-  margin-top: var(--space-4);
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
@@ -1426,6 +1529,17 @@ button {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.article-pair--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Photo row that breaks out of the text column to the full page width */
+.article-pair--breakout {
+  width: min(1200px, calc(100vw - var(--gutter) * 2));
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
 /* Side-by-side: photo stays in view while the text scrolls */
 .article-split {
   display: grid;
@@ -1514,6 +1628,10 @@ button {
 
   .article-pair--3 {
     grid-template-columns: 1fr;
+  }
+
+  .article-pair--4 {
+    grid-template-columns: 1fr 1fr;
   }
 }
 

@@ -26,6 +26,33 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Home hero: as the page scrolls up over the pinned cover photo, report how
+  // far along it is (0 to 1) so the CSS can shrink, blur, and fade the text.
+  const hero = document.querySelector(".hero");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (hero && !reduceMotion) {
+    let ticking = false;
+    const updateHero = () => {
+      // Measure from <main>: a pinned (sticky) hero's own offsetTop moves with the scroll
+      const coverDistance = hero.parentElement.offsetTop + hero.offsetHeight;
+      const progress = Math.min(Math.max(window.scrollY / coverDistance, 0), 1);
+      hero.style.setProperty("--hero-progress", progress.toFixed(3));
+      hero.classList.toggle("is-covered", progress >= 1);
+      ticking = false;
+    };
+
+    const requestUpdate = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateHero);
+      }
+    };
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    updateHero();
+  }
+
   const contactForm = document.getElementById("contact-form");
   const contactStatus = document.getElementById("contact-form-status");
   if (contactForm && contactStatus) {
