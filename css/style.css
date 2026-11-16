@@ -421,6 +421,41 @@ button {
   font-size: var(--text-lg);
 }
 
+/* Photo band behind the golf teaser: darkened on the right so the text reads */
+.golf-band {
+  padding-block: var(--space-8);
+  border-top: 0;
+  color: var(--color-invert-text);
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0.7) 100%),
+    url("/media/golf/ncaa-2026-cover.jpg") center 40% / cover no-repeat;
+}
+
+.golf-band .golf-teaser {
+  display: block;
+  max-width: 30rem;
+  margin-left: auto;
+}
+
+.golf-band .golf-teaser__text {
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-4);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.golf-band .section__link {
+  display: inline-block;
+  border-bottom-color: var(--color-invert-text);
+}
+
+@media (max-width: 640px) {
+  .golf-band {
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+      url("/media/golf/ncaa-2026-cover.jpg") 20% center / cover no-repeat;
+  }
+}
+
 /* ==========================================================================
    Project grid (Work / Projects listing pages)
    ========================================================================== */
@@ -640,6 +675,14 @@ button {
   /* Anchor to the bottom so the image's built-in fade to white always shows */
   background-position: right bottom;
   background-image: url("/media/page-banner.webp");
+}
+
+/* For pages whose header section holds the whole article: pin the image to
+   the top at its natural height so it fades out behind the title instead of
+   stretching down the page */
+.page-banner--top {
+  background-size: max(100%, 1400px) auto;
+  background-position: right top;
 }
 
 .page-banner .stub {
@@ -1864,14 +1907,60 @@ button {
   padding-inline: var(--gutter);
 }
 
+/* Browser-style window: fixed height, the dashboard scrolls inside it */
+.budget-window {
+  max-width: 1100px;
+  margin-inline: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f6f7fb;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 24px 48px -24px rgba(0, 0, 0, 0.3);
+}
+
+.budget-window__bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding-inline: var(--space-3);
+  background: #ececec;
+  border-bottom: 1px solid #dedede;
+}
+
+.budget-window__dots {
+  position: absolute;
+  left: 14px;
+  display: flex;
+  gap: 7px;
+}
+
+.budget-window__dots span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #cfcfcf;
+}
+
+.budget-window__url {
+  max-width: 60%;
+  padding: 4px 16px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #ffffff;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .budget-embed__frame {
   display: block;
   width: 100%;
-  height: 1400px;
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
+  height: min(680px, 72vh);
+  border: 0;
   background: #f6f7fb;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 18px 40px -20px rgba(0, 0, 0, 0.25);
 }
 
 /* Quick facts sit inside the reading column on this page */
@@ -2235,4 +2324,41 @@ button {
 
 .post-img--lower {
   object-position: center 75%;
+}
+
+/* Reference list with paper links */
+.project-refs {
+  list-style: disc;
+  padding-left: var(--space-4);
+}
+
+.project-refs a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: #b5b5b5;
+}
+
+.project-refs a:hover {
+  text-decoration-color: currentColor;
+}
+
+.project-refs li {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: #333333;
+}
+
+.project-refs li + li {
+  margin-top: var(--space-1);
+}
+
+/* A single PDF card, kept card-sized instead of stretching full width */
+.project-paper__docs--single {
+  max-width: 360px;
+  margin-inline: auto;
+}
+
+/* Darken a mostly-white card image so it doesn't blend into the page */
+.project-card__media--shaded {
+  filter: brightness(0.9);
 }

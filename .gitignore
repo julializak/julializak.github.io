@@ -4,3 +4,6 @@ node_modules/
 .env
 dist/
 .vscode/
+
+# Hosted on YouTube instead (too large for the repo)
+media/golf/videos/senior-captain-interview-with-coach-holt.mp4

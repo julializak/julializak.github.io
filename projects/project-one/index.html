@@ -35,7 +35,7 @@
   </header>
 
   <main>
-    <section class="stub budget-intro">
+    <section class="stub budget-intro page-banner page-banner--top">
       <div class="article article--wide prose">
         <a class="section__link stub__back" href="/projects/">&larr; Back to Projects</a>
         <p class="post-eyebrow">Claude Artifact &middot; Fall 2026</p>
@@ -89,7 +89,13 @@
       </div>
 
       <div class="budget-embed">
-        <iframe class="budget-embed__frame" src="/projects/project-one/dashboard.html" title="Student Budget Dashboard (sample data)"></iframe>
+        <div class="budget-window">
+          <div class="budget-window__bar" aria-hidden="true">
+            <span class="budget-window__dots"><span></span><span></span><span></span></span>
+            <span class="budget-window__url">Student Budget Dashboard</span>
+          </div>
+          <iframe class="budget-embed__frame" src="/projects/project-one/dashboard.html" title="Student Budget Dashboard (sample data)"></iframe>
+        </div>
       </div>
     </section>
 
@@ -113,30 +119,5 @@
   </footer>
 
   <script src="/js/main.js"></script>
-  <script>
-    // Size the embedded dashboard to its content so the page scrolls as one
-    (function () {
-      var frame = document.querySelector('.budget-embed__frame');
-      if (!frame) return;
-      function fit() {
-        try {
-          var doc = frame.contentDocument;
-          if (doc && doc.body) frame.style.height = doc.documentElement.scrollHeight + 'px';
-        } catch (e) {}
-      }
-      function watch() {
-        fit();
-        try {
-          new ResizeObserver(fit).observe(frame.contentDocument.body);
-        } catch (e) {}
-      }
-      frame.addEventListener('load', watch);
-      // The frame can finish loading before this script runs
-      try {
-        var doc = frame.contentDocument;
-        if (doc && doc.readyState === 'complete' && doc.querySelector('.wrap')) watch();
-      } catch (e) {}
-    })();
-  </script>
 </body>
 </html>

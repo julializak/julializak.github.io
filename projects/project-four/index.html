@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Two — Julia Lizak</title>
-  <meta name="description" content="Project Two by Julia Lizak.">
+  <title>Skills: Extending Agent Capabilities — Julia Lizak</title>
+  <meta name="description" content="A graduate lecture on agent skills that Julia Lizak co-presented for CSE 60556: Large Language Models at the University of Notre Dame.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -35,13 +35,83 @@
   </header>
 
   <main>
-    <section class="stub container">
-      <a class="section__link stub__back" href="/projects/">&larr; Back to Projects</a>
-      <h1 class="stub__title">Project Two</h1>
-      <p class="stub__note">Case study coming soon.</p>
-    </section>
 
-    <p class="container back-to-top"><a class="section__link" href="#top">&uarr; Back to top</a></p>
+    <!-- ######### HEADER/TITLE ######### -->
+    <div class="page-banner portfolio-hero">
+      <section class="stub budget-intro">
+        <div class="article article--wide prose">
+          <a class="section__link stub__back" href="/projects/">&larr; Back to Projects</a>
+          <p class="post-eyebrow">University of Notre Dame &middot; Fall 2026</p>
+          <h1 class="stub__title">Skills: Extending Agent Capabilities</h1>
+          <p class="post-lede">CSE 60556: Large Language Models: Basics and Practice</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="stub budget-intro portfolio-body">
+      <div class="article article--wide prose">
+        <!-- ######### OVERVIEW ######### -->
+        <p>For this graduate course, I co-presented a lecture on agent skills: reusable packages of instructions and code that teach AI agents how to do specific tasks well. I led Part 1, which brought together six recent papers to cover what skills are, how agents organize and combine them at scale, whether they actually improve performance on real coding tasks, and when one agent with skills can replace a multi-agent team. My co-presenter, Yinuo Yang, led Part 2, on how agents learn and improve skills on their own. I built my slides in LaTeX/Overleaf and also attached Python demo scripts that use a local LLM (Ollama) to generate PowerPoint, Word, and Excel files, given to me in the readings.</p>
+
+        <h2>Tools &amp; Skills</h2>
+        <ul class="project-tools">
+          <li>Large Language Models</li>
+          <li>AI Agents</li>
+          <li>Agent Skills</li>
+          <li>Research Synthesis</li>
+          <li>LaTeX</li>
+          <li>Overleaf</li>
+          <li>Python</li>
+          <li>Ollama</li>
+          <li>python-pptx</li>
+          <li>python-docx</li>
+          <li>Public Speaking</li>
+        </ul>
+
+        <!-- ######### KEY CONCEPTS ######### -->
+        <h2>Key Concepts</h2>
+        <div class="project-concepts">
+          <h3>Agent Skill</h3>
+          <p>A reusable package of instructions, scripts, and resources, usually a folder with a <code>SKILL.md</code> file, that gives an AI agent the know-how for one specific kind of task. Built-in examples include skills for creating PowerPoint, Excel, Word, and PDF files.</p>
+
+          <h3>Progressive Disclosure</h3>
+          <p>Loading information only as it's needed. An agent always sees each skill's short name and description, reads the full instructions only when a skill is relevant, and opens linked files only if the instructions call for them. This keeps the agent focused and saves tokens.</p>
+
+          <h3>Multi-Agent System</h3>
+          <p>A setup where several AI agents, each with its own role, pass work between each other to finish a task. It can be powerful, but every handoff costs extra API calls, tokens, and time.</p>
+
+          <h3>Directed Acyclic Graph (DAG)</h3>
+          <p>A set of steps connected by one-way arrows with no loops. AgentSkillOS uses one to plan a task: each skill is a step, an arrow means one skill needs another's output, and steps with no dependency on each other can run at the same time.</p>
+        </div>
+
+        <!-- ######### SLIDES ######### -->
+        <div class="project-paper">
+          <h2>View the Slides</h2>
+          <p>Want the figures, results tables, and demo code? Check out the full lecture deck, including Part 2.</p>
+          <div class="project-paper__docs project-paper__docs--single">
+            <a class="project-paper__doc" href="/media/projects/llm-skills/lizak-yang-skills-lecture.pdf" target="_blank" rel="noopener">
+              <img src="/media/projects/llm-skills/cover.jpg" alt="Title slide of the lecture Skills: Extending Agent Capabilities by Julia Lizak and Yinuo Yang" loading="lazy">
+              <span>Lecture Slides (PDF) &rarr;</span>
+            </a>
+          </div>
+        </div>
+
+
+        <!-- ######### REFERENCES ######### -->
+        <h2>Check Out the Source Readings</h2>
+        <p>The six papers I pulled from for Part 1 of the lecture.</p>
+        <ul class="project-refs">
+          <li><a href="https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction" target="_blank" rel="noopener">Introduction to Claude Skills</a>, Notov, 2025</li>
+          <li><a href="https://arxiv.org/abs/2605.07358" target="_blank" rel="noopener">A Comprehensive Survey on Agent Skills: Taxonomy, Techniques, and Applications</a>, Zhou et al., 2026</li>
+          <li><a href="https://arxiv.org/abs/2603.02176" target="_blank" rel="noopener">Organizing, Orchestrating, and Benchmarking Agent Skills at Ecosystem Scale (AgentSkillOS)</a>, Li et al., 2026</li>
+          <li><a href="https://arxiv.org/abs/2603.04448" target="_blank" rel="noopener">SkillNet: Create, Evaluate, and Connect AI Skills</a>, Liang et al., 2026</li>
+          <li><a href="https://arxiv.org/abs/2603.15401" target="_blank" rel="noopener">SWE-Skills-Bench: Do Agent Skills Actually Help in Real-World Software Engineering?</a>, Han et al., 2026</li>
+          <li><a href="https://arxiv.org/abs/2601.04748" target="_blank" rel="noopener">When Single-Agent with Skills Replace Multi-Agent Systems and When They Fail</a>, Li, 2026</li>
+        </ul>
+
+        <p class="project-top"><a class="section__link" href="#top">&uarr; Back to top</a></p>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
